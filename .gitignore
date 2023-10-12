@@ -1,5 +1,7 @@
 .idea/
 
+# CREDIT: https://github.com/kigster/cmake-project-template/blob/master/.gitignore
+
 # Compiled Object files
 **/.DS_Store
 *.slo
