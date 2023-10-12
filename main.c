@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "src/terminal/PrintHandler.h"
 
 int main() {
-    printf("Hello, World!\n");
+    InitUnicode();
     return 0;
 }
