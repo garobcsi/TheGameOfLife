@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include "../../debugmalloc.h"
 
-Game * InitializeGame(SizeMatrix size) {
-    Game *tmp = (Game*) malloc(sizeof(Game));
+Matrix * InitializeMatrix(SizeMatrix size) {
+    Matrix *tmp = (Matrix*) malloc(sizeof(Matrix));
     if (tmp == NULL) {
         free(tmp);
         AbortMsg("Memory allocation failed!");
@@ -42,7 +42,7 @@ Game * InitializeGame(SizeMatrix size) {
 
     return tmp;
 }
-void FreeGame(Game * game) {
+void FreeMatrix(Matrix * game) {
     if(game== NULL) return;
 
     for (size_t i = 0; i < game->size.x; i++) {

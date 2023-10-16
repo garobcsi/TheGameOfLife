@@ -5,10 +5,10 @@ typedef struct SizeMatrix {
     size_t x,y;
 } SizeMatrix;
 
-typedef struct Game {
+typedef struct Matrix {
     struct SizeMatrix size;
     bool ** matrix;
-} Game;
+} Matrix;
 
-Game * InitializeGame(SizeMatrix size);
-void FreeGame(Game * game);
+Matrix * InitializeMatrix(SizeMatrix size);
+void FreeMatrix(Matrix * game);
