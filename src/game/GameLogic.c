@@ -1,7 +1,7 @@
 #include "GameLogic.h"
 #include "../util/Utils.h"
-#include <stdlib.h>
 #include <stdbool.h>
+#include "../../debugmalloc.h"
 
 Game * InitializeGame(SizeMatrix size) {
     Game *tmp = (Game*) malloc(sizeof(Game));
