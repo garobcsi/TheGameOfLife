@@ -2,6 +2,6 @@
 #include "debugmalloc.h"
 
 int main() {
-    InitUnicode();
+
     return 0;
 }

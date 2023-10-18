@@ -1,3 +1,4 @@
-#define UNICODE_FULL_BLOCK 0x2588
+#include "../game/GameLogic.h"
 
-void InitUnicode();
+void MatrixBoard(Matrix * game);
+void ClearScr();
