@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "PrintHandler.h"
 #include "StyleHandler.h"
-#include "../game/MathHandler.h"
+#include "../util/IntLogicHandler.h"
 
 void PrintBoxTop(int indent,int cellsX) {
     for (int i = 0; i < indent; ++i) {
@@ -15,21 +16,22 @@ void PrintBoxTop(int indent,int cellsX) {
     printf("+\n");
 }
 
-void PrintMatrixBoard(Matrix * game) {
-    int sizeY = IntSize((int)game->size.y);
+void PrintMatrixBoard(Matrix * data) {
+    int sizeY = IntDigitSize((int)data->size.y);
 
-    PrintBoxTop(sizeY,(int)game->size.x);
-    for (int i = 0; i < game->size.y; ++i) {
-        for (int j = 0; j < game->size.x; ++j) {
+    PrintBoxTop(sizeY,(int)data->size.x);
+    for (int i = 0; i < data->size.y; ++i) {
+        for (int j = 0; j < data->size.x; ++j) {
             if(j==0) printf("%0*d|",sizeY,i+1);
-            if (game->matrix[j][i]) AnsiBackgroundWhite();
+            if (data->matrix[j][i]) AnsiBackgroundWhite();
             printf("  ");
             AnsiResetAll();
         }
         printf("|");
         printf("\n");
     }
-    PrintBoxTop(sizeY,(int)game->size.x);
+    PrintBoxTop(sizeY,(int)data->size.x);
+    printf("\n");
 }
 
 void ClearScr() {
