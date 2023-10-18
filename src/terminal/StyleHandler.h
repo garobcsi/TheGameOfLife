@@ -11,7 +11,7 @@ void AnsiColorMagenta();
 void AnsiColorCyan();
 void AnsiColorWhite();
 
-//Backgorund
+//Background
 void AnsiBackgroundBlack();
 void AnsiBackgroundRed();
 void AnsiBackgroundGreen();
