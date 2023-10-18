@@ -15,16 +15,16 @@ void PrintBoxTop(int indent,int cellsX) {
     printf("+\n");
 }
 
-void MatrixBoard(Matrix * game) {
+void PrintMatrixBoard(Matrix * game) {
     int sizeY = IntSize((int)game->size.y);
 
     PrintBoxTop(sizeY,(int)game->size.x);
     for (int i = 0; i < game->size.y; ++i) {
         for (int j = 0; j < game->size.x; ++j) {
             if(j==0) printf("%0*d|",sizeY,i+1);
-            if (game->matrix[j][i]) BackgorundWhite();
+            if (game->matrix[j][i]) AnsiBackgroundWhite();
             printf("  ");
-            ResetAll();
+            AnsiResetAll();
         }
         printf("|");
         printf("\n");

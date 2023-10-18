@@ -3,8 +3,8 @@
 #include "../terminal/StyleHandler.h"
 
 void AbortMsg(char str[]) {
-    ColorRed();
+    AnsiColorRed();
     printf("\n%s\n",str);
-    ResetAll();
+    AnsiResetAll();
     exit(1);
 }

@@ -1,59 +1,59 @@
 #include <stdio.h>
 
 //Reset
-void ResetAll () {
+void AnsiResetAll () {
     printf("\x1b[0m");
 }
 
 //ForeColor
-void ColorBlack() {
+void AnsiColorBlack() {
     printf("\x1b[30m");
 }
-void ColorRed() {
+void AnsiColorRed() {
     printf("\x1b[31m");
 }
-void ColorGreen() {
+void AnsiColorGreen() {
     printf("\x1b[32m");
 }
-void ColorYellow() {
+void AnsiColorYellow() {
     printf("\x1b[33m");
 }
-void ColorBlue() {
+void AnsiColorBlue() {
     printf("\x1b[34m");
 }
-void ColorMagenta() {
+void AnsiColorMagenta() {
     printf("\x1b[35m");
 }
-void ColorCyan() {
+void AnsiColorCyan() {
     printf("\x1b[36m");
 }
-void ColorWhite() {
+void AnsiColorWhite() {
     printf("\x1b[37m");
 }
 
-//Backgorund
-void BackgroundBlack() {
+//Background
+void AnsiBackgroundBlack() {
     printf("\x1b[40m");
 }
-void BackgroundRed() {
+void AnsiBackgroundRed() {
     printf("\x1b[41m");
 }
-void BackgorundGreen() {
+void AnsiBackgroundGreen() {
     printf("\x1b[42m");
 }
-void BackgorundYellow() {
+void AnsiBackgroundYellow() {
     printf("\x1b[43m");
 }
-void BackgorundBlue() {
+void AnsiBackgroundBlue() {
     printf("\x1b[44m");
 }
-void BackgorundMagenta() {
+void AnsiBackgroundMagenta() {
     printf("\x1b[45m");
 }
-void BackgorundCyan() {
+void AnsiBackgroundCyan() {
     printf("\x1b[46m");
 }
-void BackgorundWhite() {
+void AnsiBackgroundWhite() {
     printf("\x1b[47m");
 }
 

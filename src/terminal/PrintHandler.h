@@ -1,4 +1,4 @@
 #include "../game/GameLogic.h"
 
-void MatrixBoard(Matrix * game);
+void PrintMatrixBoard(Matrix * game);
 void ClearScr();

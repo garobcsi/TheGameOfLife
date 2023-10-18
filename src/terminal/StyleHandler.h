@@ -1,25 +1,25 @@
 //Reset
-void ResetAll ();
+void AnsiResetAll ();
 
 //ForeColor
-void ColorBlack();
-void ColorRed();
-void ColorGreen();
-void ColorYellow();
-void ColorBlue();
-void ColorMagenta();
-void ColorCyan();
-void ColorWhite();
+void AnsiColorBlack();
+void AnsiColorRed();
+void AnsiColorGreen();
+void AnsiColorYellow();
+void AnsiColorBlue();
+void AnsiColorMagenta();
+void AnsiColorCyan();
+void AnsiColorWhite();
 
 //Backgorund
-void BackgroundBlack();
-void BackgroundRed();
-void BackgorundGreen();
-void BackgorundYellow();
-void BackgorundBlue();
-void BackgorundMagenta();
-void BackgorundCyan();
-void BackgorundWhite();
+void AnsiBackgroundBlack();
+void AnsiBackgroundRed();
+void AnsiBackgroundGreen();
+void AnsiBackgroundYellow();
+void AnsiBackgroundBlue();
+void AnsiBackgroundMagenta();
+void AnsiBackgroundCyan();
+void AnsiBackgroundWhite();
 
 //Style
 void StyleBold();
