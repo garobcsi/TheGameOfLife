@@ -46,13 +46,13 @@ Matrix * InitializeMatrix(SizeMatrix size) {
 
     return tmp;
 }
-void FreeMatrix(Matrix * game) {
-    if(game== NULL) return;
+void FreeMatrix(Matrix * data) {
+    if(data== NULL) return;
 
-    for (size_t i = 0; i < game->size.x; i++) {
-        free(game->matrix[i]);
+    for (size_t i = 0; i < data->size.x; i++) {
+        free(data->matrix[i]);
     }
 
-    free(game->matrix);
-    free(game);
+    free(data->matrix);
+    free(data);
 }
