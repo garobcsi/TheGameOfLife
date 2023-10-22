@@ -4,12 +4,12 @@
 #include "StyleHandler.h"
 #include "../util/IntLogicHandler.h"
 
-void PrintBoxTop(int indent,int cellsX) {
+void PrintBoxTop(int width,int indent) {
     for (int i = 0; i < indent; ++i) {
         printf(" ");
     }
     printf("+");
-    for (int i = 0; i < cellsX; ++i) {
+    for (int i = 0; i < width; ++i) {
         printf("--");
     }
     printf("+\n");
@@ -34,7 +34,7 @@ void PrintNumbersVertically(int length,int indent) {
 void PrintMatrixBoard(Matrix * data) {
     int sizeY = IntDigitSize((int)data->size.y);
 
-    PrintBoxTop(sizeY,(int)data->size.x);
+    PrintBoxTop((int)data->size.x,sizeY);
     for (int i = 0; i < data->size.y; ++i) {
         for (int j = 0; j < data->size.x; ++j) {
             if(j==0) printf("%0*d|",sizeY,i+1);
@@ -45,7 +45,7 @@ void PrintMatrixBoard(Matrix * data) {
         printf("|");
         printf("\n");
     }
-    PrintBoxTop(sizeY,(int)data->size.x);
+    PrintBoxTop((int)data->size.x,sizeY);
     PrintNumbersVertically((int)data->size.x,sizeY);
     printf("\n");
 }
