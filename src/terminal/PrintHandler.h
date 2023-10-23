@@ -2,3 +2,5 @@
 
 void PrintMatrixBoard(Matrix * data);
 void ClearScr();
+
+void PrintLogo();
