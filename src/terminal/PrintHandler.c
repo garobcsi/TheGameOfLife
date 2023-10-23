@@ -4,9 +4,11 @@
 #include "StyleHandler.h"
 #include "../game/IntLogicHandler.h"
 
+#ifdef _WIN32
 void InitPrintUTF8ForWindows() {
     SetConsoleOutputCP(65001);
 }
+#endif
 
 void PrintBoxTop(int width,int indent) {
     for (int i = 0; i < indent; ++i) {

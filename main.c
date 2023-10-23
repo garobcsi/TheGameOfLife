@@ -11,6 +11,7 @@ int main() {
     #ifdef _WIN32
     InitPrintUTF8ForWindows();
     #endif
+
     StartTerminalSession();
 
     return 0;
