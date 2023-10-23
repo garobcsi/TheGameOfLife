@@ -4,6 +4,10 @@
 #include "StyleHandler.h"
 #include "../game/IntLogicHandler.h"
 
+void InitPrintUTF8ForWindows() {
+    SetConsoleOutputCP(65001);
+}
+
 void PrintBoxTop(int width,int indent) {
     for (int i = 0; i < indent; ++i) {
         printf(" ");
