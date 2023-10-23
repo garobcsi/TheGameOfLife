@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "PrintHandler.h"
 #include "StyleHandler.h"
-#include "../util/IntLogicHandler.h"
+#include "../game/IntLogicHandler.h"
 
 void PrintBoxTop(int width,int indent) {
     for (int i = 0; i < indent; ++i) {

@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <math.h>
-#include <stdio.h>
 
 int IntDigitSize(int num) {
     int absolute = abs(num);
