@@ -1,6 +1,6 @@
+#include <stdbool.h>
 #include "GameLogic.h"
 #include "../util/Utils.h"
-#include <stdbool.h>
 #include "../../debugmalloc.h"
 
 /*
