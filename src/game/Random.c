@@ -1,6 +1,9 @@
 #include <time.h>
 #include <stdlib.h>
+
+#ifdef __linux__ 
 #include <unistd.h>
+#endif
 
 void InitRandom() {
     unsigned int seed = 0;
