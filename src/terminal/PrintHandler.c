@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "WindowSize.h"
 #include "PrintHandler.h"
 #include "StyleHandler.h"
 #include "../game/IntLogicHandler.h"
@@ -65,8 +64,8 @@ void ClearScr() {
 #endif
 }
 
-void PrintLogo(WindowSize * windowSize) {
-    if(windowSize->ws_col >= 117) {
+void PrintLogo() {
+//    if(windowSize->ws_col >= 117) {
         // #CREDIT: https://patorjk.com/software/taag/#p=display&h=0&v=0&f=ANSI%20Shadow&t=The%20Game%20Of%20Life
         printf("\n"
                "████████╗██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ███████╗    ██╗     ██╗███████╗███████╗\n"
@@ -75,11 +74,11 @@ void PrintLogo(WindowSize * windowSize) {
                "   ██║   ██╔══██║██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║██╔══╝      ██║     ██║██╔══╝  ██╔══╝  \n"
                "   ██║   ██║  ██║███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝██║         ███████╗██║██║     ███████╗\n"
                "   ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝         ╚══════╝╚═╝╚═╝     ╚══════╝\n");
-    } else {
-        AnsiBackgroundWhite();
-        AnsiColorBlack();
-        printf("The Game Of Life\n");
-        AnsiResetAll();
-    }
+//    } else {
+//        AnsiBackgroundWhite();
+//        AnsiColorBlack();
+//        printf("The Game Of Life\n");
+//        AnsiResetAll();
+//    }
 }
 

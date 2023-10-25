@@ -2,7 +2,6 @@
 #include "src/game/Random.h"
 #include "src/terminal/GameSession.h"
 #include "src/terminal/PrintHandler.h"
-#include "src/terminal/WindowSize.h"
 #include "debugmalloc.h"
 
 int main() {
@@ -15,10 +14,10 @@ int main() {
 
     ClearScr();
 
-    WindowSize * winSize = GetWindowSize();
-    StartTerminalSession(winSize);
+//    WindowSize * winSize = GetWindowSize();
+    StartTerminalSession();
 
 
-    DestroyWindowSize(winSize);
+//    DestroyWindowSize(winSize);
     return 0;
 }
