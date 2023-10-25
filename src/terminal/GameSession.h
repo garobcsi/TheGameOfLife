@@ -1,4 +1,6 @@
 #define X 20
 #define Y 20
 
-void StartTerminalSession();
+#include "WindowSize.h"
+
+void StartTerminalSession(WindowSize * windowSize);
