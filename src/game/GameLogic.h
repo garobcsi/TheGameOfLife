@@ -11,4 +11,4 @@ typedef struct Matrix {
 } Matrix;
 
 Matrix * InitializeMatrix(SizeMatrix size);
-void FreeMatrix(Matrix * data);
+void DestroyMatrix(Matrix * data);

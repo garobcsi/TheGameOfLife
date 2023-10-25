@@ -5,7 +5,7 @@
 
 /*
  * It's using malloc IT HAS TO BE FREED
- * Use "FreeMatrix" Function
+ * Use "DestroyMatrix" Function
  * */
 Matrix * InitializeMatrix(SizeMatrix size) {
     Matrix *tmp = (Matrix*) malloc(sizeof(Matrix));
@@ -46,7 +46,7 @@ Matrix * InitializeMatrix(SizeMatrix size) {
 
     return tmp;
 }
-void FreeMatrix(Matrix * data) {
+void DestroyMatrix(Matrix * data) {
     if(data== NULL) return;
 
     for (size_t i = 0; i < data->size.x; i++) {
