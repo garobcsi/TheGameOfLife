@@ -12,7 +12,7 @@ int main() {
     InitPrintUTF8ForWindows();
     #endif
 
-    StartTerminalSession();
+    ClearScr();
 
     return 0;
 }
