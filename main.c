@@ -16,5 +16,6 @@ int main() {
 
     WinSize winSize = GetWindowSize();
     StartTerminalSession(winSize);
+
     return 0;
 }
