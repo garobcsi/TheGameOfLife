@@ -1,4 +1,6 @@
 .idea/
+.cmake/
+cmake-build*/
 
 # CREDIT: https://github.com/kigster/cmake-project-template/blob/master/.gitignore
 
