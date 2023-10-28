@@ -64,8 +64,8 @@ void ClearScr() {
 #endif
 }
 
-void PrintLogo() {
-//    if(windowSize->ws_col >= 117) {
+void PrintLogo(WinSize winSize) {
+    if(winSize.x >= 117) {
         // #CREDIT: https://patorjk.com/software/taag/#p=display&h=0&v=0&f=ANSI%20Shadow&t=The%20Game%20Of%20Life
         printf("\n"
                "████████╗██╗  ██╗███████╗     ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ███████╗    ██╗     ██╗███████╗███████╗\n"
@@ -74,11 +74,11 @@ void PrintLogo() {
                "   ██║   ██╔══██║██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║██╔══╝      ██║     ██║██╔══╝  ██╔══╝  \n"
                "   ██║   ██║  ██║███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝██║         ███████╗██║██║     ███████╗\n"
                "   ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝         ╚══════╝╚═╝╚═╝     ╚══════╝\n");
-//    } else {
-//        AnsiBackgroundWhite();
-//        AnsiColorBlack();
-//        printf("The Game Of Life\n");
-//        AnsiResetAll();
-//    }
+    } else {
+        AnsiBackgroundWhite();
+        AnsiColorBlack();
+        printf("The Game Of Life\n");
+        AnsiResetAll();
+    }
 }
 

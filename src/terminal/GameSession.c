@@ -1,5 +1,5 @@
 #include "PrintHandler.h"
 
-void StartTerminalSession() {
-    PrintLogo();
+void StartTerminalSession(WinSize winSize) {
+    PrintLogo(winSize);
 }

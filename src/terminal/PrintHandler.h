@@ -1,4 +1,5 @@
 #include "../game/GameLogic.h"
+#include "WindowSize.h"
 
 #ifdef _WIN32
 void InitPrintUTF8ForWindows();
@@ -7,4 +8,4 @@ void InitPrintUTF8ForWindows();
 void PrintMatrixBoard(Matrix * data);
 void ClearScr();
 
-void PrintLogo();
+void PrintLogo(WinSize winSize);

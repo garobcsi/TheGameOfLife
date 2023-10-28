@@ -14,10 +14,7 @@ int main() {
 
     ClearScr();
 
-//    WindowSize * winSize = GetWindowSize();
-    StartTerminalSession();
-
-
-//    DestroyWindowSize(winSize);
+    WinSize winSize = GetWindowSize();
+    StartTerminalSession(winSize);
     return 0;
 }
