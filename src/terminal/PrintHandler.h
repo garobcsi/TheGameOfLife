@@ -5,7 +5,7 @@
 void InitPrintUTF8ForWindows();
 #endif
 
-void PrintMatrixBoard(Matrix * data);
+void PrintMatrixBoard(Matrix * matrix);
 void ClearScr();
 
 void PrintLogo(WinSize winSize);

@@ -39,22 +39,22 @@ void PrintNumbersVertically(int length,int indent) {
     }
 }
 
-void PrintMatrixBoard(Matrix * data) {
-    int sizeY = IntDigitSize((int)data->size.y);
+void PrintMatrixBoard(Matrix * matrix) {
+    int sizeY = IntDigitSize((int)matrix->size.y);
 
-    PrintBoxTop((int)data->size.x,sizeY);
-    for (int i = 0; i < data->size.y; ++i) {
-        for (int j = 0; j < data->size.x; ++j) {
+    PrintBoxTop((int)matrix->size.x,sizeY);
+    for (int i = 0; i < matrix->size.y; ++i) {
+        for (int j = 0; j < matrix->size.x; ++j) {
             if(j==0) printf("%0*d|",sizeY,i+1);
-            if (data->matrix[j][i]) AnsiBackgroundWhite();
+            if (matrix->data[j][i]) AnsiBackgroundWhite();
             printf("  ");
             AnsiResetAll();
         }
         printf("|");
         printf("\n");
     }
-    PrintBoxTop((int)data->size.x,sizeY);
-    PrintNumbersVertically((int)data->size.x,sizeY);
+    PrintBoxTop((int)matrix->size.x,sizeY);
+    PrintNumbersVertically((int)matrix->size.x,sizeY);
     printf("\n");
 }
 
@@ -79,8 +79,8 @@ void PrintLogo(WinSize winSize) {
     } else {
         AnsiBackgroundWhite();
         AnsiColorBlack();
-        printf("The Game Of Life\n");
+        printf("The Game Of Life");
         AnsiResetAll();
+        printf("\n");
     }
 }
-

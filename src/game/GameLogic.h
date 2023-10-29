@@ -10,10 +10,10 @@ typedef struct SizeMatrix {
 
 typedef struct Matrix {
     struct SizeMatrix size;
-    bool ** matrix;
+    bool ** data;
 } Matrix;
 
 #endif /* GAME_LOGIC */
 
 Matrix * InitializeMatrix(SizeMatrix size);
-void DestroyMatrix(Matrix * data);
+void DestroyMatrix(Matrix * matrix);
