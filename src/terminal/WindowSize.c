@@ -8,7 +8,7 @@
 #endif
 
 WinSize GetWindowSize() {
-    WinSize tmp;
+    WinSize tmp = {0,0 };
 #ifdef _WIN32
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     int ret;
