@@ -10,7 +10,7 @@ char ReadChar() {
     char c;
 
 #ifdef _WIN32
-    c = _getch();
+    c = getch();
 #else
     struct termios old_term, new_term;
     tcgetattr(STDIN_FILENO, &old_term);
