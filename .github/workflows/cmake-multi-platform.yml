@@ -5,8 +5,20 @@ name: CMake on multiple platforms
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "main.c"
+      - "debugmalloc.h"
+      - "CMakeLists.txt"
+      - ".github/**"
+      - "src/**"
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "main.c"
+      - "debugmalloc.h"
+      - "CMakeLists.txt"
+      - ".github/**"
+      - "src/**"
 
 jobs:
   build:
