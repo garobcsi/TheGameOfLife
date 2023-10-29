@@ -4,4 +4,5 @@
 void StartTerminalSession(WinSize winSize) {
     PrintLogo(winSize);
     PrintMainMenu();
+    PromptMainMenu();
 }
