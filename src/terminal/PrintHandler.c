@@ -66,6 +66,14 @@ void ClearScr() {
 #endif
 }
 
+void PrintHeader(char * str) {
+    AnsiBackgroundWhite();
+    AnsiColorBlack();
+    printf("%s",str);
+    AnsiResetAll();
+    printf("\n");
+}
+
 void PrintLogo(WinSize winSize) {
     if(winSize.x >= 117) {
         // #CREDIT: https://patorjk.com/software/taag/#p=display&h=0&v=0&f=ANSI%20Shadow&t=The%20Game%20Of%20Life
@@ -75,12 +83,16 @@ void PrintLogo(WinSize winSize) {
                "   ██║   ███████║█████╗      ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║█████╗      ██║     ██║█████╗  █████╗  \n"
                "   ██║   ██╔══██║██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║██╔══╝      ██║     ██║██╔══╝  ██╔══╝  \n"
                "   ██║   ██║  ██║███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝██║         ███████╗██║██║     ███████╗\n"
-               "   ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝         ╚══════╝╚═╝╚═╝     ╚══════╝\n");
+               "   ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝         ╚══════╝╚═╝╚═╝     ╚══════╝\n\n");
     } else {
-        AnsiBackgroundWhite();
-        AnsiColorBlack();
-        printf("The Game Of Life");
-        AnsiResetAll();
+        PrintHeader("The Game Of Life");
         printf("\n");
     }
+}
+
+void PrintMainMenu() {
+    PrintHeader("Main Menu");
+    printf("1) New Game\n");
+    printf("2) Load Game\n");
+    printf("9) Exit Game\n");
 }

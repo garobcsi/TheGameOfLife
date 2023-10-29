@@ -9,3 +9,4 @@ void PrintMatrixBoard(Matrix * matrix);
 void ClearScr();
 
 void PrintLogo(WinSize winSize);
+void PrintMainMenu();
