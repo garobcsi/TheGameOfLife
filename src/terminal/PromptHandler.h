@@ -1,1 +1,1 @@
-void PromptMainMenu();
+int PromptMainMenu();

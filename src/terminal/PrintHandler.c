@@ -92,6 +92,7 @@ void PrintLogo(WinSize winSize) {
 
 void PrintMainMenu() {
     PrintHeader("Main Menu");
+    printf("\n");
     printf("1) New Game\n");
     printf("2) Load Game\n");
     printf("9) Exit Game\n");

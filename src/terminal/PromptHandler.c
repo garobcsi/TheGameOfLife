@@ -1,4 +1,10 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <stdbool.h>
+#include "../util/Utils.h"
+#include "../game/GameLogic.h"
+#include "../game/FileHandler.h"
+#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <conio.h>
@@ -26,5 +32,15 @@ char ReadChar() {
     return c;
 }
 
-void PromptMainMenu() {
+int PromptMainMenu() {
+    printf("\nChoose: ");
+    while (true) {
+        char c = ReadChar();
+        int num = c-'0';
+        if (isdigit(c) && ((num>=1 && num<=2) || num == 9)) {
+            printf("%c\n",c);
+            return num;
+        }
+    }
+}
 }
