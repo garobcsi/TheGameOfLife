@@ -14,4 +14,4 @@ typedef struct LoadedFileProperties {
 
 #endif /* FILE_HANDLER */
 
-void InitSaveFolder();
+int InitSaveFolder();
