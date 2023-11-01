@@ -47,7 +47,7 @@ Matrix * InitializeMatrix(SizeMatrix size) {
     return tmp;
 }
 void DestroyMatrix(Matrix * matrix) {
-    if(matrix== NULL) return;
+    if(matrix == NULL) return;
 
     for (size_t i = 0; i < matrix->size.x; i++) {
         free(matrix->data[i]);
@@ -55,4 +55,21 @@ void DestroyMatrix(Matrix * matrix) {
 
     free(matrix->data);
     free(matrix);
+}
+
+Game * InitializeGame() {
+    Game * game = (Game*)malloc(sizeof(Game));
+    if (game == NULL) {
+        free(game);
+        AbortMsg("Memory allocation failed!");
+        return NULL;
+    }
+    game->matrix = NULL;
+    game->winSize = GetWindowSize();
+    game->fileProps.didUserSave = false;
+    return game;
+}
+void DestroyGame(Game * game) {
+    if (game->matrix != NULL) DestroyMatrix(game->matrix);
+    free(game);
 }
