@@ -1,5 +1,18 @@
 #include <stdio.h>
 
+//Cursor
+void MoveCursorUp(int steps) {
+    for (int i = 0; i < steps; ++i) {
+        printf("\x1b[1A");
+
+    }
+}
+
+//Erase
+void EraseInLine() {
+    printf("\x1b[K");
+}
+
 //Reset
 void AnsiResetAll () {
     printf("\x1b[0m");

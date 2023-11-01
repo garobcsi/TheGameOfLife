@@ -1,3 +1,9 @@
+//Cursor
+void MoveCursorUp(int steps);
+
+//Erase
+void EraseInLine();
+
 //Reset
 void AnsiResetAll ();
 
