@@ -10,3 +10,4 @@ void ClearScr();
 
 void PrintLogo(WinSize winSize);
 void PrintMainMenu();
+void PrintNewGameTitle();

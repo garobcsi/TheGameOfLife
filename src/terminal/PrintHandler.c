@@ -97,3 +97,9 @@ void PrintMainMenu() {
     printf("2) Load Game\n");
     printf("9) Exit Game\n");
 }
+
+void PrintNewGameTitle() {
+    ClearScr();
+    PrintHeader("New Game");
+    printf("\n");
+}
