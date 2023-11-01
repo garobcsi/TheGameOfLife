@@ -42,5 +42,26 @@ int PromptMainMenu() {
             return num;
         }
     }
+}
 
+char * PromptFileName()  {
+    char * buffer = (char*) malloc(sizeof(char)*FILE_NAME_LENGTH);
+    bool error = false;
+    do {
+        error = false;
+        printf("Save Name: ");
+        if (fgets(buffer, FILE_NAME_LENGTH, stdin) != NULL) {
+            if (FileNameHasBadChar(buffer) || strcmp(buffer,"\n") == 0) {
+                error = true;
+                MoveCursorUp(1);
+                EraseInLine();
+            }
+        } else {
+            free(buffer);
+            AbortMsg("Failed to read input.");
+            return NULL;
+        }
+    } while (error == true);
+
+    return buffer;
 }
