@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../util/Stringify.h"
 #include "../util/Utils.h"
 #include "FileHandler.h"
@@ -27,4 +28,16 @@ int InitSaveFolder() {
     #endif
 
     return 0;
+}
+
+bool FileNameHasBadChar(char str[]) {
+    const char* badChars = "<>:\"/\\|?*";
+
+    for (size_t i = 0; str[i] != '\0'; i++) {
+        if (strchr(badChars, str[i]) != NULL) {
+            return true;
+        }
+    }
+
+    return false;
 }

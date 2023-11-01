@@ -15,3 +15,4 @@ typedef struct LoadedFileProperties {
 #endif /* FILE_HANDLER */
 
 int InitSaveFolder();
+bool FileNameHasBadChar(char str[]);
