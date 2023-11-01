@@ -5,7 +5,10 @@
 #include "debugmalloc.h"
 
 int main() {
-    InitSaveFolder();
+    int createFolderStatus = InitSaveFolder(); // create `saves` folder
+    if (createFolderStatus == 1) {
+        return 1; // error while creating folder
+    }
     InitRandom();
 
     #ifdef _WIN32
@@ -14,8 +17,17 @@ int main() {
 
     ClearScr();
 
-    WinSize winSize = GetWindowSize();
-    StartTerminalSession(winSize);
+    Game * game = InitializeGame();
+    if (game == NULL) {
+        return 1; // error while creating (malloc) game
+    }
 
+    int abortStatus = LoadMenu(mainMenu,game);
+
+    DestroyGame(game);
+
+    if (abortStatus == 1) { // after destroying game return with error
+        return 1;
+    }
     return 0;
 }
