@@ -22,10 +22,10 @@ void PurgeStdin() {
     while ((c = getchar()) != '\n' && c != EOF);
 #else
     __fpurge(stdin);
-    
 #endif
 }
 
+/*It will read a char without enter*/
 char ReadChar() {
     char c;
 
