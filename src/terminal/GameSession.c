@@ -51,7 +51,7 @@ void HandleNewGame(Game * game) {
     int error = 0;
     char str[FILE_NAME_LENGTH];
     do {
-
+        ClearScr();
         PrintNewGameTitle();
         error = PromptFileName(&str);
         if (error == 2) {
