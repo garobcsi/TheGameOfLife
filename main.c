@@ -26,8 +26,9 @@ int main() {
 
     DestroyGame(game);
 
-    if (abortStatus == 1) { // after destroying game return with error
-        return 1;
+    if (abortStatus == 1) {
+        return 1; // after destroying game return with error
     }
+
     return 0;
 }
