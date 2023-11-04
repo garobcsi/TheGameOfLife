@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include "../util/Stringify.h"
 #include "../util/Utils.h"
 #include "FileHandler.h"
@@ -8,6 +9,7 @@
 #else
 #include <sys/stat.h>
 #include <errno.h>
+#include <stdio_ext.h>
 #endif
 
 int InitSaveFolder() {
@@ -40,4 +42,12 @@ bool FileNameHasBadChar(char str[]) {
     }
 
     return false;
+}
+
+void PurgeStdin() {
+#ifdef _WIN32
+    __fpurge(stdin);
+#else
+
+#endif
 }
