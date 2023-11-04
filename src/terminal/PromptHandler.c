@@ -13,16 +13,11 @@
 #else
 #include <termios.h>
 #include <unistd.h>
-#include <stdio_ext.h>
 #endif
 
 void PurgeStdin() {
-#ifdef _WIN32
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-#else
-    __fpurge(stdin);
-#endif
+int c;
+while ((c = getchar()) != '\n' && c != EOF);
 }
 
 /*It will read a char without enter*/
