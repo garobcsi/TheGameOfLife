@@ -13,6 +13,7 @@
 #else
 #include <termios.h>
 #include <unistd.h>
+#include <stdio_ext.h>
 #endif
 
 void PurgeStdin() {
