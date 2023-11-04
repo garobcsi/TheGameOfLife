@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include "StyleHandler.h"
+#include "PrintHandler.h"
 #include "../util/Utils.h"
 #include "../game/GameLogic.h"
 #include "../game/FileHandler.h"
@@ -52,12 +54,12 @@ int PromptMainMenu() {
 int PromptFileName(char * str) {
     printf("Save Name: ");
 
-    __fpurge(stdin);
     char * stdinError = fgets(str, FILE_NAME_LENGTH, stdin);
     if (stdinError == NULL) {
         AbortMsg("Failed to read input.");
         return 2;
     }
+    PurgeStdin();
     printf("\n");
 
     return 0;

@@ -2,7 +2,6 @@
 #include "PrintHandler.h"
 #include "PromptHandler.h"
 #include "../../debugmalloc.h"
-#include <stdio.h>
 
 int LoadMenu(MenuOption menuOption,Game * game){
     switch (menuOption) {
