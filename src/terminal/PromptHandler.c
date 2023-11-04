@@ -14,6 +14,17 @@
 #include <termios.h>
 #include <unistd.h>
 #endif
+
+void PurgeStdin() {
+#ifdef _WIN32
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+#else
+    __fpurge(stdin);
+    
+#endif
+}
+
 char ReadChar() {
     char c;
 

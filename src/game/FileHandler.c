@@ -43,11 +43,3 @@ bool FileNameHasBadChar(char str[]) {
 
     return false;
 }
-
-void PurgeStdin() {
-#ifdef _WIN32
-    __fpurge(stdin);
-#else
-
-#endif
-}
