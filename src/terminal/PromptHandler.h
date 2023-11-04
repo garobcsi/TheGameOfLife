@@ -1,2 +1,2 @@
 int PromptMainMenu();
-char * PromptFileName();
+int PromptFileName(char * str);

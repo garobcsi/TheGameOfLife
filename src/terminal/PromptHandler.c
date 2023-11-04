@@ -44,24 +44,21 @@ int PromptMainMenu() {
     }
 }
 
-char * PromptFileName()  {
-    char * buffer = (char*) malloc(sizeof(char)*FILE_NAME_LENGTH);
-    bool error = false;
-    do {
-        error = false;
-        printf("Save Name: ");
-        if (fgets(buffer, FILE_NAME_LENGTH, stdin) != NULL) {
-            if (FileNameHasBadChar(buffer) || strcmp(buffer,"\n") == 0) {
-                error = true;
-                MoveCursorUp(1);
-                EraseInLine();
-            }
-        } else {
-            free(buffer);
-            AbortMsg("Failed to read input.");
-            return NULL;
-        }
-    } while (error == true);
+/*
+ * 0 normal
+ * 1 format error
+ * 2 critical error
+ * */
+int PromptFileName(char * str) {
+    printf("Save Name: ");
 
-    return buffer;
+    __fpurge(stdin);
+    char * stdinError = fgets(str, FILE_NAME_LENGTH, stdin);
+    if (stdinError == NULL) {
+        AbortMsg("Failed to read input.");
+        return 2;
+    }
+    printf("\n");
+
+    return 0;
 }

@@ -48,14 +48,19 @@ void HandleMainMenu(Game * game) {
     }
 }
 void HandleNewGame(Game * game) {
-    PrintNewGameTitle();
-    char * str = PromptFileName();
-    if(str == NULL) {
-        LoadMenu(abortGame,game);
-        return;
-    }
-    printf("\n\n%s",str);
-    free(str);
+
+    int error = 0;
+    char str[FILE_NAME_LENGTH];
+    do {
+
+        PrintNewGameTitle();
+        error = PromptFileName(&str);
+        if (error == 2) {
+            LoadMenu(abortGame,game);
+            return;
+        }
+
+    } while (error != 0);
 }
 void HandleLoadGame(Game * game) {
 
