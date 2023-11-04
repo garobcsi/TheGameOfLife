@@ -99,7 +99,6 @@ void PrintMainMenu() {
 }
 
 void PrintNewGameTitle() {
-    ClearScr();
     PrintHeader("New Game");
     printf("\n");
 }
