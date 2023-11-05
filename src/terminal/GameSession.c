@@ -63,12 +63,15 @@ void HandleNewGame(Game * game) {
     } while (error != 0);
     strcpy(game->fileProps.fileName,str);
     free(str);
+
+    LoadMenu(mainGame,game);
 }
 void HandleLoadGame(Game * game) {
 
 }
 void HandleMainGame(Game * game) {
 
+    SizeMatrix size = PromptMatrixSize(game->winSize);
 }
 void HandleQuit(Game * game) {
 
