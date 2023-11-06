@@ -1,5 +1,5 @@
 <h1 align="center">
-  TheGameOfLife
+  <a heref="https://github.com/garobcsi/TheGameOfLife">TheGameOfLife</a>
 </h1>
 <p align="center">
   <a href="https://github.com/garobcsi/TheGameOfLife/actions/workflows/cmake-multi-platform.yml">
