@@ -1,15 +1,17 @@
 #include <string.h>
 #include <stdio.h>
+#include "FileHandler.h"
 #include "../util/Stringify.h"
 #include "../util/Utils.h"
-#include "FileHandler.h"
+#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <windows.h>
+#include <io.h>
 #else
 #include <sys/stat.h>
 #include <errno.h>
-#include <stdio_ext.h>
+#include <unistd.h>
 #endif
 
 int InitSaveFolder() {
@@ -42,4 +44,25 @@ bool FileNameHasBadChar(char str[]) {
     }
 
     return false;
+}
+
+bool DoesFileExist(char * str) {
+    bool tmp = false;
+#ifdef _WIN32
+
+#else
+    char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
+    char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
+    char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
+    f[0]='\0';
+    strcat(f,folderName);
+    strcat(f,"/");
+    strcat(f,str);
+    strcat(f,".");
+    strcat(f,fileExt);
+    printf("%s",f);
+    tmp = access(f, F_OK) == 0;
+    free(f);
+    return tmp;
+#endif
 }

@@ -47,25 +47,31 @@ void HandleMainMenu(Game * game) {
     }
 }
 void HandleNewGame(Game * game) {
-
     int error = 0;
-    char str[FILE_NAME_LENGTH];
+    char * str = (char *) malloc(sizeof(char)*FILE_NAME_LENGTH);
     do {
         ClearScr();
         PrintNewGameTitle();
-        error = PromptFileName(&str);
         if (error == 2) {
+            printf("File Name Too Long !\n\n");
+        }
+        error = PromptFileName(str);
+        if (error == 3) {
             LoadMenu(abortGame,game);
             return;
         }
-
     } while (error != 0);
+    strcpy(game->fileProps.fileName,str);
+    free(str);
+
+    LoadMenu(mainGame,game);
 }
 void HandleLoadGame(Game * game) {
 
 }
 void HandleMainGame(Game * game) {
 
+    SizeMatrix size = PromptMatrixSize(game->winSize);
 }
 void HandleQuit(Game * game) {
 

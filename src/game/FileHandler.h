@@ -16,3 +16,4 @@ typedef struct LoadedFileProperties {
 
 int InitSaveFolder();
 bool FileNameHasBadChar(char str[]);
+bool DoesFileExist(char * str);
