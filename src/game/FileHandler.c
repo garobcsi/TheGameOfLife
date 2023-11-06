@@ -14,6 +14,19 @@
 #include <unistd.h>
 #endif
 
+char * MakePath(char * str) {
+    char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
+    char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
+    char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
+    f[0]='\0';
+    strcat(f,folderName);
+    strcat(f,"/");
+    strcat(f,str);
+    strcat(f,".");
+    strcat(f,fileExt);
+    return f;
+}
+
 int InitSaveFolder() {
     #ifdef _WIN32
         if (!CreateDirectory(STRINGIFY_VALUE(SAVE_FOLDER), NULL)) {
@@ -48,15 +61,7 @@ bool FileNameHasBadChar(char str[]) {
 
 bool DoesFileExist(char * str) {
     bool tmp = false;
-    char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
-    char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
-    char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
-    f[0]='\0';
-    strcat(f,folderName);
-    strcat(f,"/");
-    strcat(f,str);
-    strcat(f,".");
-    strcat(f,fileExt);
+    char * f = MakePath(str);
 #ifdef _WIN32
     tmp = access(f, 0) == 0;
 #else
