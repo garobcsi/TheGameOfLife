@@ -1,6 +1,7 @@
 #include "GameSession.h"
 #include "PrintHandler.h"
 #include "PromptHandler.h"
+#include "../game/FileHandler.h"
 #include "../../debugmalloc.h"
 
 int LoadMenu(MenuOption menuOption,Game * game){
@@ -53,9 +54,9 @@ void HandleNewGame(Game * game) {
         ClearScr();
         PrintNewGameTitle();
         if (error == 2) {
-            printf("File Name Too Long !\n");
+            printf("Save name too long !\n");
         }else if (error==3) {
-            printf("File already exits !\n");
+            printf("Save already exists !\n");
         }
         error = PromptFileName(str);
         if (error == 4) {
@@ -72,8 +73,17 @@ void HandleLoadGame(Game * game) {
 
 }
 void HandleMainGame(Game * game) {
-
     SizeMatrix size = PromptMatrixSize(game->winSize);
+    game->matrix = InitializeMatrix(size);
+
+    int error = SaveMatrixToFile(game->matrix,game->fileProps.fileName);
+    if (error == 1) {
+        LoadMenu(abortGame,game);
+        return;
+    }
+
+    ClearScr();
+    PrintMatrixBoard(game->matrix);
 }
 void HandleQuit(Game * game) {
 
