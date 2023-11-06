@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "../terminal/WindowSize.h"
-#include "FileHandler.h"
+#include "FileHandlerStruct.h"
 
 #ifndef GAME_LOGIC
 #define GAME_LOGIC
