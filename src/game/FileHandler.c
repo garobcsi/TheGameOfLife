@@ -70,3 +70,29 @@ bool DoesFileExist(char * str) {
     free(f);
     return tmp;
 }
+
+/*
+ * 0 ok
+ * 1 failed to open file
+ * */
+int SaveMatrixToFile(Matrix * matrix,char * str) {
+    FILE *file;
+    char * path = MakePath(str);
+    file = fopen(path, "w");
+    free(path);
+    if (file == NULL) {
+        AbortMsg("Failed to create file!");
+        return 1;
+    }
+    fprintf(file, "%d;%d\n",(int)matrix->size.x,(int)matrix->size.y);
+    for (int i = 0; i < (int)matrix->size.x; ++i) {
+        fprintf(file,"%d",matrix->data[i][0]);
+        for (int j = 1; j < (int)matrix->size.y; ++j) {
+            fprintf(file,";%d",matrix->data[i][j]);
+        }
+        fprintf(file,"\n");
+    }
+
+    fclose(file);
+    return 0;
+}
