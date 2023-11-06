@@ -67,7 +67,7 @@ int PromptFileName(char * str) {
 
     char * stdinError = fgets(str, FILE_NAME_LENGTH, stdin);
     if (stdinError == NULL) {
-        AbortMsg("Failed to read input.");
+        AbortMsg("Failed to read input!");
         return 4;
     }
     printf("\n");
@@ -148,7 +148,7 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
             continue;
         }
 
-        bool isTooBig = winSize.y != 0 && (double )winSize.y/1.4 - y < 0;
+        bool isTooBig = winSize.y != 0 && (double)winSize.y/1.3 - y < 0;
         if (isTooBig || y > MAX_Y || y < 1 ) {
             if(gotErrorY) {
                 EraseInLine();
@@ -163,6 +163,6 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
             y = -1;
         }
     }
-    
+
     return (SizeMatrix){x,y};
 }
