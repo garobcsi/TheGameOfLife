@@ -48,9 +48,6 @@ bool FileNameHasBadChar(char str[]) {
 
 bool DoesFileExist(char * str) {
     bool tmp = false;
-#ifdef _WIN32
-
-#else
     char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
     char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
     char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
@@ -60,9 +57,11 @@ bool DoesFileExist(char * str) {
     strcat(f,str);
     strcat(f,".");
     strcat(f,fileExt);
-    printf("%s",f);
+#ifdef _WIN32
+    tmp = access(f, 0) == 0;
+#else
     tmp = access(f, F_OK) == 0;
+#endif
     free(f);
     return tmp;
-#endif
 }
