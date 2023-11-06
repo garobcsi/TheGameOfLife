@@ -59,7 +59,8 @@ int PromptMainMenu() {
  * 0 ok
  * 1 format error
  * 2 file name too large
- * 3 critical error
+ * 3 file exits
+ * 4 critical error
  * */
 int PromptFileName(char * str) {
     printf("Save Name: ");
@@ -67,7 +68,7 @@ int PromptFileName(char * str) {
     char * stdinError = fgets(str, FILE_NAME_LENGTH, stdin);
     if (stdinError == NULL) {
         AbortMsg("Failed to read input.");
-        return 3;
+        return 4;
     }
     printf("\n");
 
@@ -78,6 +79,10 @@ int PromptFileName(char * str) {
     }
     if (strcmp(str,"\n") == 0 || FileNameHasBadChar(str)) {
         return 1;
+    }
+    str[strlen(str)-1] = '\0'; // remove '\n' at the end
+    if (DoesFileExist(str)) {
+        return 3;
     }
 
     return 0;

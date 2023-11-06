@@ -53,10 +53,12 @@ void HandleNewGame(Game * game) {
         ClearScr();
         PrintNewGameTitle();
         if (error == 2) {
-            printf("File Name Too Long !\n\n");
+            printf("File Name Too Long !\n");
+        }else if (error==3) {
+            printf("File already exits !\n");
         }
         error = PromptFileName(str);
-        if (error == 3) {
+        if (error == 4) {
             LoadMenu(abortGame,game);
             return;
         }
