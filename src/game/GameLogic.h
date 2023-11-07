@@ -18,7 +18,7 @@ typedef struct Matrix {
 typedef struct Game {
     Matrix * matrix;
     WinSize winSize;
-    LoadedFileProperties fileProps;
+    GameFileProperties fileProps;
 } Game;
 
 #endif /* GAME_LOGIC */

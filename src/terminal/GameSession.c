@@ -67,13 +67,13 @@ void HandleNewGame(Game * game) {
             return;
         }
     } while (saveError != 0);
-    strcpy(game->fileProps.fileName,str);
+    strcpy(game->fileProps.name,str);
     free(str);
 
     SizeMatrix size = PromptMatrixSize(game->winSize);
     game->matrix = InitializeMatrix(size);
 
-    int fileError = SaveMatrixToFile(game->matrix,game->fileProps.fileName);
+    int fileError = SaveMatrixToFile(game->matrix,game->fileProps.name);
     if (fileError >= 1) {
         LoadMenu(abortGame,game);
         return;

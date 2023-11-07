@@ -7,9 +7,9 @@
 #ifndef FILE_HANDLER_STRUCT
 #define FILE_HANDLER_STRUCT
 
-typedef struct LoadedFileProperties {
-    char fileName[FILE_NAME_LENGTH];
+typedef struct GameFileProperties {
+    char name[FILE_NAME_LENGTH];
     bool didUserSave;
-}LoadedFileProperties;
+}GameFileProperties;
 
 #endif /* FILE_HANDLER_STRUCT */
