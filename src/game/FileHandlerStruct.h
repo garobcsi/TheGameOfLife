@@ -12,4 +12,9 @@ typedef struct GameFileProperties {
     bool didUserSave;
 }GameFileProperties;
 
+typedef struct GameSaveFiles {
+    char ** data;
+    int count;
+} GameSaveFiles;
+
 #endif /* FILE_HANDLER_STRUCT */
