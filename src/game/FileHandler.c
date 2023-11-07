@@ -92,10 +92,10 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
         return 1;
     }
     fprintf(file, "%d;%d\n",(int)matrix->size.x,(int)matrix->size.y);
-    for (int i = 0; i < (int)matrix->size.x; ++i) {
-        fprintf(file,"%d",matrix->data[i][0]);
-        for (int j = 1; j < (int)matrix->size.y; ++j) {
-            fprintf(file,";%d",matrix->data[i][j]);
+    for (int i = 0; i < (int)matrix->size.y; ++i) {
+        fprintf(file,"%d",matrix->data[0][i]);
+        for (int j = 1; j < (int)matrix->size.x; ++j) {
+            fprintf(file,";%d",matrix->data[j][i]);
         }
         fprintf(file,"\n");
     }
