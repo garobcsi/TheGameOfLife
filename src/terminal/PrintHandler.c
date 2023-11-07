@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "PrintHandler.h"
 #include "StyleHandler.h"
+#include "../game/CharLogicHandler.h"
 #include "../game/IntLogicHandler.h"
+#include "../game/FileHandler.h"
+#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -96,4 +100,13 @@ void PrintMainMenu() {
     printf("1) New Game\n");
     printf("2) Load Game\n");
     printf("9) Exit Game\n");
+}
+
+void PrintFiles(GameSaveFiles * files) {
+    for (int i = 0; i < files->count; ++i) {
+        char * str = CpyStr(files->data[i]);
+        str[strlen(str)-4] = '\0';
+        printf("%d) %s\n",i+1,str);
+        free(str);
+    }
 }

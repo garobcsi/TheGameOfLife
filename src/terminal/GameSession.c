@@ -82,6 +82,16 @@ void HandleNewGame(Game * game) {
     LoadMenu(mainGame,game);
 }
 void HandleLoadGame(Game * game) {
+    ClearScr();
+    PrintHeader("Load Game");
+    printf("\n");
+    GameSaveFiles * files = NULL;
+    int error = GetSaveFiles(&files);
+    if (error == 1) {
+        LoadMenu(abortGame,game);
+    }
+    PrintFiles(files);
+    DestroyStructSaveFiles(files);
 
 }
 void HandleMainGame(Game * game) {

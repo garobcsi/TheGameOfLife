@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "FileHandler.h"
+#include "CharLogicHandler.h"
 #include "../util/Stringify.h"
 #include "../util/Utils.h"
 #include "../../debugmalloc.h"
@@ -12,12 +13,13 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <unistd.h>
+#include <dirent.h>
 #endif
 
 char * MakePath(char * str) {
     char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
     char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
-    char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
+    char * f = (char*)malloc(sizeof(char) * (strlen(folderName) + strlen(str) + strlen(fileExt) +3));
     if (f == NULL) {
         free(f);
         return NULL;
@@ -103,4 +105,71 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
     fclose(file);
     free(path);
     return 0;
+}
+
+/*
+ * 0 ok
+ * 1 catastrophic failure
+ * */
+int GetSaveFiles(GameSaveFiles ** files) {
+    DIR * dir;
+    struct dirent * entry;
+    *files = (GameSaveFiles *)malloc(sizeof(GameSaveFiles));
+    if (*files == NULL) {
+        free((*files));
+        return 1;
+    }
+
+    (*files)->count= 0;
+    (*files)->data = NULL;
+
+    dir = opendir(STRINGIFY_VALUE(SAVE_FOLDER));
+    if (dir == NULL) {
+        free((*files));
+        *files = NULL;
+        return 1;
+    }
+
+    while ((entry = readdir(dir)) != NULL) {
+        if (entry->d_type == DT_REG) {
+            (*files)->data = (char**)realloc((*files)->data, sizeof(char*) * ((*files)->count + 1));
+            if ((*files)->data == NULL) {
+                for (size_t i = 0; i < (*files)->count; i++) {
+                    if ((*files)->data[i] != NULL) free((*files)->data[i]);
+                }
+                free((*files)->data);
+                free(*files);
+                *files = NULL;
+                closedir(dir);
+                return 1;
+            }
+
+            (*files)->data[(*files)->count] = CpyStr(entry->d_name);
+            if ((*files)->data[(*files)->count] == NULL) {
+                for (size_t i = 0; i < (*files)->count; i++) {
+                    if ((*files)->data[i] != NULL) free((*files)->data[i]);
+                }
+                free((*files)->data);
+                free(*files);
+                *files = NULL;
+                closedir(dir);
+                return 1;
+            }
+            (*files)->count++;
+        }
+    }
+    closedir(dir);
+
+    return 0;
+
+}
+
+void DestroyStructSaveFiles(GameSaveFiles * files) {
+    if (files != NULL) {
+        for (size_t i = 0; i < files->count; i++) {
+            if (files->data[i] != NULL) free(files->data[i]);
+        }
+        free(files->data);
+        free(files);
+    }
 }
