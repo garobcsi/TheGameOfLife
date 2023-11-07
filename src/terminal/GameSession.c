@@ -85,16 +85,11 @@ void HandleLoadGame(Game * game) {
 
 }
 void HandleMainGame(Game * game) {
-    SizeMatrix size = PromptMatrixSize(game->winSize);
-    game->matrix = InitializeMatrix(size);
-
-    int error = SaveMatrixToFile(game->matrix,game->fileProps.fileName);
-    if (error == 1) {
-        LoadMenu(abortGame,game);
-        return;
-    }
-
     ClearScr();
+
+    PrintHeader("The Game Of Life");
+    printf("\n");
+
     PrintMatrixBoard(game->matrix);
 }
 void HandleQuit(Game * game) {
