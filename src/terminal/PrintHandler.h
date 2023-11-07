@@ -8,6 +8,6 @@ void InitPrintUTF8ForWindows();
 void PrintMatrixBoard(Matrix * matrix);
 void ClearScr();
 
+void PrintHeader(char * str);
 void PrintLogo(WinSize winSize);
 void PrintMainMenu();
-void PrintNewGameTitle();
