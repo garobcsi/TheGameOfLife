@@ -3,4 +3,5 @@ target_sources(${PROJECT_NAME} PRIVATE
         IntLogicHandler.c IntLogicHandler.h
         Random.c Random.h
         FileHandler.c FileHandler.h
-        FileHandlerStruct.h)
+        FileHandlerStruct.h
+        CharLogicHandler.c CharLogicHandler.h)

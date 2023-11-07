@@ -1,0 +1,1 @@
+char * CpyStr(char * str);
