@@ -18,6 +18,10 @@ char * MakePath(char * str) {
     char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
     char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
     char * f = (char*)malloc(sizeof(char) * strlen(folderName) * strlen(str) * strlen(fileExt) +3);
+    if (f == NULL) {
+        free(f);
+        return NULL;
+    }
     f[0]='\0';
     strcat(f,folderName);
     strcat(f,"/");
@@ -74,12 +78,15 @@ bool DoesFileExist(char * str) {
 /*
  * 0 ok
  * 1 failed to open file
+ * 2 failed to allocate memory
  * */
 int SaveMatrixToFile(Matrix * matrix,char * str) {
     FILE *file;
     char * path = MakePath(str);
+    if (path == NULL) {
+        return 2;
+    }
     file = fopen(path, "w");
-    free(path);
     if (file == NULL) {
         AbortMsg("Failed to create file!");
         return 1;
@@ -94,5 +101,6 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
     }
 
     fclose(file);
+    free(path);
     return 0;
 }
