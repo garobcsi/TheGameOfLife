@@ -112,8 +112,15 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
  * 1 catastrophic failure
  * */
 int GetSaveFiles(GameSaveFiles ** files) {
+#ifdef _WIN32
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = INVALID_HANDLE_VALUE;
+    DWORD error = 0;
+#else
+
     DIR * dir;
     struct dirent * entry;
+#endif
     *files = (GameSaveFiles *)malloc(sizeof(GameSaveFiles));
     if (*files == NULL) {
         free((*files));
@@ -123,15 +130,32 @@ int GetSaveFiles(GameSaveFiles ** files) {
     (*files)->count= 0;
     (*files)->data = NULL;
 
+#ifdef _WIN32
+    char path[MAX_PATH];
+    snprintf(path, MAX_PATH, "%s\\*", STRINGIFY_VALUE(SAVE_FOLDER));
+
+    hFind = FindFirstFile(path, &findFileData);
+    if (hFind == INVALID_HANDLE_VALUE) {
+        free(*files);
+        *files = NULL;
+        return 1;
+    }
+#else
     dir = opendir(STRINGIFY_VALUE(SAVE_FOLDER));
     if (dir == NULL) {
         free((*files));
         *files = NULL;
         return 1;
     }
+#endif
 
+#ifdef _WIN32
+    do {
+        if (!(findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+#else
     while ((entry = readdir(dir)) != NULL) {
         if (entry->d_type == DT_REG) {
+#endif
             (*files)->data = (char**)realloc((*files)->data, sizeof(char*) * ((*files)->count + 1));
             if ((*files)->data == NULL) {
                 for (size_t i = 0; i < (*files)->count; i++) {
@@ -140,11 +164,19 @@ int GetSaveFiles(GameSaveFiles ** files) {
                 free((*files)->data);
                 free(*files);
                 *files = NULL;
+            #ifdef _WIN32
+                FindClose(hFind);
+            #else
                 closedir(dir);
+            #endif
                 return 1;
             }
 
+        #ifdef _WIN32
+            (*files)->data[(*files)->count] = CpyStr(findFileData.cFileName);
+        #else
             (*files)->data[(*files)->count] = CpyStr(entry->d_name);
+        #endif
             if ((*files)->data[(*files)->count] == NULL) {
                 for (size_t i = 0; i < (*files)->count; i++) {
                     if ((*files)->data[i] != NULL) free((*files)->data[i]);
@@ -152,13 +184,33 @@ int GetSaveFiles(GameSaveFiles ** files) {
                 free((*files)->data);
                 free(*files);
                 *files = NULL;
+            #ifdef _WIN32
+                FindClose(hFind);
+            #else
                 closedir(dir);
+            #endif
                 return 1;
             }
             (*files)->count++;
         }
+#ifdef _WIN32 
+    } while (FindNextFile(hFind, &findFileData) != 0);
+
+    error = GetLastError();
+    if (error != ERROR_NO_MORE_FILES) {
+        for (int i = 0; i < (*files)->count; i++) {
+            if ((*files)->data[i] != NULL) free((*files)->data[i]);
+        }
+        free((*files)->data);
+        free(*files);
+        *files = NULL;
+        return 1;
+    }
+    FindClose(hFind);
+#else
     }
     closedir(dir);
+#endif
 
     return 0;
 
