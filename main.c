@@ -15,8 +15,6 @@ int main() {
     InitPrintUTF8ForWindows();
     #endif
 
-    ClearScr();
-
     Game * game = InitializeGame();
     if (game == NULL) {
         return 1; // error while creating (malloc) game

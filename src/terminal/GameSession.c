@@ -33,6 +33,8 @@ int LoadMenu(MenuOption menuOption,Game * game){
 }
 
 void HandleMainMenu(Game * game) {
+    ClearScr();
+
     PrintLogo(game->winSize);
     PrintMainMenu();
     int select = PromptMainMenu();
