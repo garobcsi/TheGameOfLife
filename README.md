@@ -9,4 +9,5 @@
 
 ## :book: Docs's
 
-Specification: [here](./documentation/specification.docx)
+Specification: [docx](./documentation/specification.docx) [pdf](./documentation/out-pdf/specification.pdf)
+User Documentation: [docx](./documentation/user_documentation.docx) [pdf](./documentation/out-pdf/user_documentation.pdf)
