@@ -88,7 +88,7 @@ int PromptFileName(char * str) {
     return 0;
 }
 
-SizeMatrix PromptMatrixSize(WinSize winSize) {
+SizeMatrix PromptMatrixSize(Game * game) {
     int x=-1,y=-1;
 
     bool gotErrorX=false,gotErrorY=false;
@@ -97,6 +97,9 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
 
         printf("Game board width: ");
         bool error = scanf("%d",&x) != 1;
+        //recalculate
+        game->winSize = GetWindowSize();
+
         if (error) {
             if(gotErrorX) {
                 EraseInLine();
@@ -111,9 +114,7 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
             PurgeStdin();
             continue;
         }
-        int len = IntDigitSize(x);
-        bool isTooBig = winSize.x != 0 && (int) winSize.x - (x * 2 + 2 + len) < 0;
-        if (isTooBig || x > MAX_X || x < 1 ) {
+        if(IsXTooBig(game->winSize,x)) {
             if(gotErrorX) {
                 EraseInLine();
                 MoveCursorUp(1);
@@ -133,6 +134,8 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
 
         printf("Game board height: ");
         bool error = scanf("%d",&y) != 1;
+        //recalculate
+        game->winSize = GetWindowSize();
         if (error) {
             if(gotErrorY) {
                 EraseInLine();
@@ -148,8 +151,7 @@ SizeMatrix PromptMatrixSize(WinSize winSize) {
             continue;
         }
 
-        bool isTooBig = winSize.y != 0 && (double)winSize.y/1.3 - y < 0;
-        if (isTooBig || y > MAX_Y || y < 1 ) {
+        if(IsYTooBig(game->winSize,y)) {
             if(gotErrorY) {
                 EraseInLine();
                 MoveCursorUp(1);
