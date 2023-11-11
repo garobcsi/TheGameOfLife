@@ -168,3 +168,72 @@ SizeMatrix PromptMatrixSize(Game * game) {
 
     return (SizeMatrix){x,y};
 }
+
+
+/*
+ * 0 ok
+ * 1 critical error
+ * */
+int PromptFileLoad(int * select,GameSaveFiles * files,Game * game) {
+    printf("\n");
+    int num=-1;
+
+    bool gotError=false;
+    while (num == -1) {
+        num = -1;
+
+        printf("Choose: ");
+        bool error = scanf("%d",&num) != 1;
+        //recalculate
+        game->winSize = GetWindowSize();
+
+        bool errorInput = num <= 0 || num > files->count;
+        bool errorSize = false;
+        if (!errorInput) {
+            SizeMatrix size = {0,0};
+            int errorFile = GetSizeFromFile(&size,files,num);
+            if (errorFile == 1) {
+                return 1;
+            }
+            if (IsXTooBig(game->winSize,size.x) || IsYTooBig(game->winSize,size.y)) {
+                errorSize = true;
+            }
+        }
+        if (error || errorInput || errorSize) {
+            if(gotError) {
+                EraseInLine();
+                MoveCursorUp(1);
+                EraseInLine();
+            }
+            MoveCursorUp(1);
+            EraseInLine();
+
+            gotError=true;
+
+            if (error) {
+                printf("Invalid input !\n");
+                PurgeStdin();
+            } else if (errorInput) {
+                printf("Invalid input !\n");
+            } else {
+                printf("Save is too big for your screen !\n");
+            }
+            num = -1;
+        }
+    }
+
+    *select = num;
+    return 0;
+}
+
+int PromptBack() {
+    printf("\nChoose: ");
+    while (true) {
+        char c = ReadChar();
+        int num = c-'0';
+        if (isdigit(c) && num == 1) {
+            printf("%c\n",c);
+            return num;
+        }
+    }
+}
