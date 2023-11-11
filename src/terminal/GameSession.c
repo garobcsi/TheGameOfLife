@@ -2,6 +2,7 @@
 #include "PrintHandler.h"
 #include "PromptHandler.h"
 #include "PrintHandler.h"
+#include "../util/Utils.h"
 #include "../game/FileHandler.h"
 #include "../../debugmalloc.h"
 
@@ -53,6 +54,10 @@ void HandleMainMenu(Game * game) {
 void HandleNewGame(Game * game) {
     int saveError = 0;
     char * str = (char *) malloc(sizeof(char)*FILE_NAME_LENGTH);
+    if (str == NULL) {
+        LoadMenu(abortGame,game);
+        return;
+    }
     do {
         ClearScr();
         PrintHeader("New Game");
@@ -72,29 +77,83 @@ void HandleNewGame(Game * game) {
     strcpy(game->fileProps.name,str);
     free(str);
 
-    SizeMatrix size = PromptMatrixSize(game->winSize);
+    SizeMatrix size = PromptMatrixSize(game);
     game->matrix = InitializeMatrix(size);
 
+    if (game->matrix == NULL) {
+        AbortMsg("Matrix were not initialized!");
+        LoadMenu(abortGame,game);
+        return;
+    }
+
     int fileError = SaveMatrixToFile(game->matrix,game->fileProps.name);
-    if (fileError >= 1) {
+    if (fileError == 1) {
         LoadMenu(abortGame,game);
         return;
     }
 
     LoadMenu(mainGame,game);
+    return;
 }
 void HandleLoadGame(Game * game) {
     ClearScr();
     PrintHeader("Load Game");
     printf("\n");
+
     GameSaveFiles * files = NULL;
-    int error = GetSaveFiles(&files);
-    if (error == 1) {
+    int errorFile = GetSaveFiles(&files);
+    if (errorFile == 1) {
         LoadMenu(abortGame,game);
+        return;
+    }
+    if (files->count == 0) {
+        printf("No saves were found!\n\n");
+        PrintBack();
+        PromptBack();
+        DestroyStructSaveFiles(files);
+        LoadMenu(mainMenu,game);
+        return;
     }
     PrintFiles(files);
+    int select = -1;
+    int errorSelect = PromptFileLoad(&select,files,game);
+    if (errorSelect == 1) {
+        DestroyStructSaveFiles(files);
+        LoadMenu(abortGame,game);
+        return;
+    }
+    SizeMatrix size = {0,0};
+    int errorSizeFile = GetSizeFromFile(&size,files,select);
+    if (errorSizeFile == 1) {
+        DestroyStructSaveFiles(files);
+        LoadMenu(abortGame,game);
+        return;
+    }
+    if (size.x == 0 && size.y == 0) {
+        AbortMsg("Failed to get matrix size from file !");
+        DestroyStructSaveFiles(files);
+        LoadMenu(abortGame,game);
+        return;
+    }
+    game->matrix = InitializeMatrix(size);
+
+    int errorMatrixLoad = LoadGameFromFile(game,files,select);
+    if (errorMatrixLoad == 1) {
+        DestroyStructSaveFiles(files);
+        LoadMenu(abortGame,game);
+        return;
+    }
+
     DestroyStructSaveFiles(files);
 
+    if (game->matrix == NULL) {
+        AbortMsg("Matrix were not initialized!");
+        LoadMenu(abortGame,game);
+        return;
+    }
+
+    LoadMenu(mainGame,game);
+    return;
 }
 void HandleMainGame(Game * game) {
     ClearScr();
