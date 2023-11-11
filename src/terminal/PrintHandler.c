@@ -110,3 +110,7 @@ void PrintFiles(GameSaveFiles * files) {
         free(str);
     }
 }
+
+void PrintBack() {
+    printf("1) Back\n");
+}

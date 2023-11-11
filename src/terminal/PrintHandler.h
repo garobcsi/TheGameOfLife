@@ -12,3 +12,4 @@ void PrintHeader(char * str);
 void PrintLogo(WinSize winSize);
 void PrintMainMenu();
 void PrintFiles(GameSaveFiles * files);
+void PrintBack();
