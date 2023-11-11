@@ -1,4 +1,8 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include "WindowSize.h"
+#include "../terminal/GameSession.h"
+#include "../game/IntLogicHandler.h"
 
 #ifdef _WIN32
     #include <windows.h>
@@ -22,4 +26,25 @@ WinSize GetWindowSize() {
     tmp.y = w.ws_row;
 #endif
     return tmp;
+}
+
+bool IsXTooBig(WinSize winSize,size_t x) {
+    int len = IntDigitSize((int)x);
+    bool isTooBig = winSize.x != 0 && (int) winSize.x - (int)(x * 2 + 2 + len) < 0;
+    if (isTooBig || x > MAX_X || x < 1 ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool IsYTooBig(WinSize winSize,size_t y) {
+    bool isTooBig = winSize.y != 0 && (double)winSize.y/1.3 - (int)y < 0;
+    if (isTooBig || y > MAX_Y || y < 1 ) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
