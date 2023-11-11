@@ -16,7 +16,7 @@
 #include <dirent.h>
 #endif
 
-char * MakePath(char * str) {
+char * MakePath(char * str,bool catFileFormat) {
     char * folderName = STRINGIFY_VALUE(SAVE_FOLDER);
     char * fileExt = STRINGIFY_VALUE(FILE_FORMAT);
     char * f = (char*)malloc(sizeof(char) * (strlen(folderName) + strlen(str) + strlen(fileExt) +3));
@@ -29,8 +29,10 @@ char * MakePath(char * str) {
     strcat(f,folderName);
     strcat(f,"/");
     strcat(f,str);
-    strcat(f,".");
-    strcat(f,fileExt);
+    if (catFileFormat) {
+        strcat(f,".");
+        strcat(f,fileExt);
+    }
     return f;
 }
 
@@ -68,7 +70,7 @@ bool FileNameHasBadChar(char str[]) {
 
 bool DoesFileExist(char * str) {
     bool tmp = false;
-    char * f = MakePath(str);
+    char * f = MakePath(str,true);
 #ifdef _WIN32
     tmp = access(f, 0) == 0;
 #else
@@ -81,14 +83,10 @@ bool DoesFileExist(char * str) {
 /*
  * 0 ok
  * 1 failed to open file
- * 2 failed to allocate memory
  * */
 int SaveMatrixToFile(Matrix * matrix,char * str) {
     FILE *file;
-    char * path = MakePath(str);
-    if (path == NULL) {
-        return 2;
-    }
+    char * path = MakePath(str,true);
     file = fopen(path, "w");
     if (file == NULL) {
         AbortMsg("Failed to create file!");
@@ -96,11 +94,83 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
     }
     fprintf(file, "%d;%d\n",(int)matrix->size.x,(int)matrix->size.y);
     for (int i = 0; i < (int)matrix->size.y; ++i) {
-        fprintf(file,"%d",matrix->data[0][i]);
-        for (int j = 1; j < (int)matrix->size.x; ++j) {
-            fprintf(file,";%d",matrix->data[j][i]);
+        for (int j = 0; j < (int)matrix->size.x; ++j) {
+            fprintf(file,"%d;",matrix->data[j][i]);
         }
         fprintf(file,"\n");
+    }
+
+    fclose(file);
+    free(path);
+    return 0;
+}
+
+/*
+ * 0 ok
+ * 1 critical error
+ * */
+int GetSizeFromFile (SizeMatrix * size, GameSaveFiles * files,int select) {
+    char * path = MakePath(files->data[select-1],false);
+
+    FILE *file = fopen(path, "r");
+    if (file == NULL) {
+        AbortMsg("Error opening file");
+        return 1;
+    }
+    if (fscanf(file,"%d;%d\n", &size->x, (&size->y)) != 2) {
+        AbortMsg("Error while reading a file!");
+        fclose(file);
+        free(path);
+        return 1;
+    }
+
+    fclose(file);
+
+    free(path);
+    return 0;
+}
+
+/*
+ * 0 ok
+ * 1 critical error
+ * */
+int LoadGameFromFile(Game * game,GameSaveFiles * files,int select) {
+    char * fileName =files->data[select-1];
+
+    game->fileProps.name[0] = '\0';
+    strcpy(game->fileProps.name,fileName);
+    game->fileProps.name[strlen(game->fileProps.name)-4] = '\0';
+
+    char * path = MakePath(fileName,false);
+
+    FILE *file = fopen(path, "r");
+    if (file == NULL) {
+        AbortMsg("Error opening file");
+        return 1;
+    }
+
+    //skip first line
+    int tmpX =0, tmpY =0;
+    if (fscanf(file,"%d;%d", &tmpX, &tmpX) != 2) {
+        AbortMsg("Error while reading a file!");
+        fclose(file);
+        free(path);
+        return 1;
+    }
+
+    int x = (int) game->matrix->size.x,y = (int) game->matrix->size.y;
+    for (int i = 0; i < y; i++) {
+        for (int j = 0; j < x; j++) {
+            int data;
+            if (fscanf(file,"%d", &data) != 1) {
+                AbortMsg("Error while reading matrix data!");
+                fclose(file);
+                free(path);
+                return 1;
+            }
+            game->matrix->data[j][i] = (bool)data;
+            fgetc(file);
+        }
     }
 
     fclose(file);
