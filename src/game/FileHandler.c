@@ -22,6 +22,7 @@ char * MakePath(char * str) {
     char * f = (char*)malloc(sizeof(char) * (strlen(folderName) + strlen(str) + strlen(fileExt) +3));
     if (f == NULL) {
         free(f);
+        AbortMsg("Memory allocation failed!");
         return NULL;
     }
     f[0]='\0';
@@ -124,6 +125,7 @@ int GetSaveFiles(GameSaveFiles ** files) {
     *files = (GameSaveFiles *)malloc(sizeof(GameSaveFiles));
     if (*files == NULL) {
         free((*files));
+        AbortMsg("Memory allocation failed!");
         return 1;
     }
 
@@ -138,6 +140,7 @@ int GetSaveFiles(GameSaveFiles ** files) {
     if (hFind == INVALID_HANDLE_VALUE) {
         free(*files);
         *files = NULL;
+        AbortMsg("Error while opening directory!");
         return 1;
     }
 #else
@@ -145,6 +148,7 @@ int GetSaveFiles(GameSaveFiles ** files) {
     if (dir == NULL) {
         free((*files));
         *files = NULL;
+        AbortMsg("Error while opening directory!");
         return 1;
     }
 #endif
@@ -169,6 +173,7 @@ int GetSaveFiles(GameSaveFiles ** files) {
             #else
                 closedir(dir);
             #endif
+                AbortMsg("Memory allocation failed!");
                 return 1;
             }
 
@@ -189,6 +194,7 @@ int GetSaveFiles(GameSaveFiles ** files) {
             #else
                 closedir(dir);
             #endif
+                AbortMsg("Memory allocation failed!");
                 return 1;
             }
             (*files)->count++;
@@ -204,6 +210,8 @@ int GetSaveFiles(GameSaveFiles ** files) {
         free((*files)->data);
         free(*files);
         *files = NULL;
+
+        AbortMsg("Error while getting files!");
         return 1;
     }
     FindClose(hFind);
