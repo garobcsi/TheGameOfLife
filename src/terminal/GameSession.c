@@ -55,6 +55,7 @@ void HandleNewGame(Game * game) {
     int saveError = 0;
     char * str = (char *) malloc(sizeof(char)*FILE_NAME_LENGTH);
     if (str == NULL) {
+        free(str);
         LoadMenu(abortGame,game);
         return;
     }

@@ -5,6 +5,7 @@
 char * CpyStr(char * str) {
     char * tmp = (char *) malloc(sizeof(char)*strlen(str)+1);
     if (tmp == NULL) {
+        free(tmp);
         AbortMsg("Memory allocation failed!");
         return NULL;
     }
