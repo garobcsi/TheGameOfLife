@@ -119,7 +119,7 @@ int GetSizeFromFile (SizeMatrix * size, GameSaveFiles * files,int select) {
         AbortMsg("Error opening file");
         return 1;
     }
-    if (fscanf(file,"%d;%d\n", &size->x, (&size->y)) != 2) {
+    if (fscanf(file,"%zd;%zd\n", &size->x, (&size->y)) != 2) {
         AbortMsg("Error while reading a file!");
         fclose(file);
         free(path);
