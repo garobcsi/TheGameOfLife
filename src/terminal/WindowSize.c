@@ -40,7 +40,8 @@ bool IsXTooBig(WinSize winSize,size_t x) {
 }
 
 bool IsYTooBig(WinSize winSize,size_t y) {
-    bool isTooBig = winSize.y != 0 && (double)winSize.y/1.3 - (int)y < 0;
+    int len = IntDigitSize((int)y);
+    bool isTooBig = winSize.y != 0 && (int)winSize.y - ((int)y+2+len+12) < 0;
     if (isTooBig || y > MAX_Y || y < 1 ) {
         return true;
     }
