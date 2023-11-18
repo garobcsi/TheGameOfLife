@@ -12,7 +12,7 @@ void AbortMsg(char str[]) {
     printf("\n%s\n",str);
     AnsiResetAll();
 }
-void Sleep(int time) {
+void SleepTime(int time) {
 #ifdef _WIN32
     Sleep(time *100);
 #else

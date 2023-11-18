@@ -1,2 +1,2 @@
 void AbortMsg(char str[]);
-void Sleep(int time);
+void SleepTime(int time);

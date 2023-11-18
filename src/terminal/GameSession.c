@@ -263,7 +263,7 @@ void HandleGameSave(Game * game) {
     ClearScr();
     PrintHeader("Game Save\n");
     PrintGameWasSaved();
-    Sleep(1);
+    SleepTime(1);
     LoadMenu(mainGame,game);
 }
 
