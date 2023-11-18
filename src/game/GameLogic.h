@@ -27,3 +27,4 @@ Matrix * InitializeMatrix(SizeMatrix size);
 void DestroyMatrix(Matrix * matrix);
 Game * InitializeGame();
 void DestroyGame(Game * game);
+void DeleteGameData (Game * game);

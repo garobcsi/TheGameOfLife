@@ -55,6 +55,7 @@ void DestroyMatrix(Matrix * matrix) {
 
     free(matrix->data);
     free(matrix);
+    matrix = NULL;
 }
 
 Game * InitializeGame() {
@@ -66,10 +67,20 @@ Game * InitializeGame() {
     }
     game->matrix = NULL;
     game->winSize = GetWindowSize();
-    game->fileProps.didUserSave = false;
+    game->fileProps.didUserSave = true;
     return game;
 }
 void DestroyGame(Game * game) {
     if (game->matrix != NULL) DestroyMatrix(game->matrix);
     free(game);
+    game = NULL;
+}
+
+void DeleteGameData (Game * game) {
+    if (game->matrix != NULL) DestroyMatrix(game->matrix);
+    game->matrix = NULL;
+    game->winSize.x = 0;
+    game->winSize.y = 0;
+    game->fileProps.didUserSave = true;
+    game->fileProps.name[0] = '\0';
 }
