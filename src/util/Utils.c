@@ -14,7 +14,7 @@ void AbortMsg(char str[]) {
 }
 void SleepTime(int time) {
 #ifdef _WIN32
-    Sleep(time *100);
+    Sleep(time *1000);
 #else
     sleep(time);
 #endif
