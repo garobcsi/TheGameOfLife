@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <string.h>
 #include "StyleHandler.h"
 #include "PrintHandler.h"
 #include "GameSession.h"
@@ -236,4 +237,53 @@ int PromptBack() {
             return num;
         }
     }
+}
+
+int PromptGameMenu() {
+    printf("\nChoose: ");
+    while (true) {
+        char c = ReadChar();
+        int num = c-'0';
+        if (isdigit(c) && ((num >= 1 && num <=5) || (num == 8  || num == 9)) ) {
+            printf("%c\n",c);
+            return num;
+        }
+    }
+}
+
+/*
+ * 0 ok
+ * 1 formatting error
+ * 2 critical error
+ */
+int PromptYesNo(bool * YesNo,char ask[]) {
+    char str[5];
+
+    printf("%s ",ask);
+
+    char * stdinError = fgets(str, 5, stdin);
+    if (stdinError == NULL) {
+        AbortMsg("Failed to read input!");
+        return 2;
+    }
+    printf("\n");
+    if (str[strlen(str)-1] != '\n') {
+        PurgeStdin();
+        return 1;
+    }
+    if (str[0] == '\n') {
+        *YesNo = true;
+        return 0;
+    }
+    str[strlen(str)-1] = '\0'; // remove '\n' at the end
+    if (strcmp(str,"Yes") == 0 ||  strcmp(str,"y") == 0 || strcmp(str,"Y") == 0) {
+        *YesNo =true;
+        return 0;
+    }
+    if (strcmp(str,"No") == 0 || strcmp(str,"n") == 0 || strcmp(str,"N") == 0) {
+        *YesNo = false;
+        return 0;
+    }
+
+    return 0;
 }
