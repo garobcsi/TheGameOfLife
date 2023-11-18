@@ -13,3 +13,5 @@ void PrintLogo(WinSize winSize);
 void PrintMainMenu();
 void PrintFiles(GameSaveFiles * files);
 void PrintBack();
+void PrintGameMenu();
+void PrintGameWasSaved();

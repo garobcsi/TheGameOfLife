@@ -114,3 +114,21 @@ void PrintFiles(GameSaveFiles * files) {
 void PrintBack() {
     printf("1) Back\n");
 }
+
+void PrintGameMenu() {
+    printf("1) Next Step");
+    printf("\n2) Kill / Revive");
+    printf("\n3) Randomize");
+    printf("\n4) Clear");
+    printf("\n5) Save");
+    printf("\n");
+    printf("\n8) Back");
+    printf("\n9) Exit\n");
+}
+
+void PrintGameWasSaved() {
+    AnsiColorGreen();
+    printf("Game was successfully saved !");
+    AnsiResetAll();
+    printf("\n");
+}
