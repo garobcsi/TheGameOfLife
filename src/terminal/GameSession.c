@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "GameSession.h"
 #include "PrintHandler.h"
 #include "PromptHandler.h"
@@ -20,9 +22,6 @@ int LoadMenu(MenuOption menuOption,Game * game){
         case mainGame:
             HandleMainGame(game);
             break;
-        case quitGame:
-            HandleQuit(game);
-            break;
         case abortGame:
             return 1;
             break;
@@ -35,6 +34,7 @@ int LoadMenu(MenuOption menuOption,Game * game){
 
 void HandleMainMenu(Game * game) {
     ClearScr();
+    game->winSize = GetWindowSize();
 
     PrintLogo(game->winSize);
     PrintMainMenu();
@@ -163,7 +163,132 @@ void HandleMainGame(Game * game) {
     printf("\n");
 
     PrintMatrixBoard(game->matrix);
-}
-void HandleQuit(Game * game) {
 
+    PrintGameMenu();
+    // TODO: menu : quit, save, next, set (x,y)
+    switch (PromptGameMenu()) {
+        case 1: // Next Step
+            HandleGameNextStep(game);
+            break;
+        case 2: // Kill / Revive
+            HandleGameModify(game);
+            break;
+        case 3: // Randomize
+            HandleGameRandomize(game);
+            break;
+        case 4: // Clear
+            HandleGameClear(game);
+            break;
+        case 5: // Save
+            HandleGameSave(game);
+            break;
+        case 8: // Back
+            HandleGameBack(game);
+            break;
+        case 9: // Exit
+            HandleGameQuit(game);
+            break;
+
+    }
+    return;
+}
+
+void HandleGameNextStep(Game * game) {
+    game->fileProps.didUserSave = false;
+
+    LoadMenu(mainGame,game);
+}
+
+void HandleGameModify(Game * game) {
+    game->fileProps.didUserSave = false;
+
+    LoadMenu(mainGame,game);
+}
+
+void HandleGameRandomize(Game * game) {
+    game->fileProps.didUserSave = false;
+
+    bool yn = false;
+    while (true) {
+        ClearScr();
+        PrintHeader("Randomize\n");
+        int error = PromptYesNo(&yn,"This will rewrite game save data!\n\nDo you want to continue [y/n]");
+        if (error == 3) {
+            LoadMenu(abortGame,game);
+        }
+        if (error == 0) {
+            break;
+        }
+    }
+    if (yn) {
+        for (int i = 0; i < (int)game->matrix->size.y; ++i) {
+            for (int j = 0; j < (int) game->matrix->size.x; ++j)
+                game->matrix->data[j][i] = (bool)(rand() % 2);
+        }
+    }
+    LoadMenu(mainGame,game);
+}
+
+void HandleGameClear(Game * game) {
+    game->fileProps.didUserSave = true;
+
+    bool yn = false;
+    while (true) {
+        ClearScr();
+        PrintHeader("Game Clear\n");
+        int error = PromptYesNo(&yn,"This will clear your game!\n\nDo you want to continue [y/n]");
+        if (error == 3) {
+            LoadMenu(abortGame,game);
+        }
+        if (error == 0) {
+            break;
+        }
+    }
+    if (yn) {
+        for (int i = 0; i < (int)game->matrix->size.y; ++i) {
+            for (int j = 0; j < (int) game->matrix->size.x; ++j)
+                game->matrix->data[j][i] = false;
+        }
+    }
+    LoadMenu(mainGame,game);
+}
+
+void HandleGameSave(Game * game) {
+    game->fileProps.didUserSave = true;
+
+    int error =  SaveMatrixToFile(game->matrix,game->fileProps.name);
+    if (error == 1) {
+        LoadMenu(abortGame,game);
+    }
+    ClearScr();
+    PrintHeader("Game Save\n");
+    PrintGameWasSaved();
+    Sleep(1);
+    LoadMenu(mainGame,game);
+}
+
+void HandleDoYouWantToSave(Game * game) {
+    ClearScr();
+    PrintHeader("Game Save\n");
+    bool yn = false;
+    int promptError = PromptYesNo(&yn,"Do you want to save your game [y/n]");
+    if (promptError == 3) {
+        LoadMenu(abortGame,game);
+    }
+    if (yn) {
+        int fileError =  SaveMatrixToFile(game->matrix,game->fileProps.name);
+        if (fileError == 1) {
+            LoadMenu(abortGame,game);
+        }
+    }
+}
+
+void HandleGameBack(Game * game) {
+    if (game->fileProps.didUserSave == false) HandleDoYouWantToSave(game);
+    DeleteGameData(game);
+    LoadMenu(mainMenu,game);
+}
+
+void HandleGameQuit(Game * game) {
+    if (game->fileProps.didUserSave == false) HandleDoYouWantToSave(game);
 }

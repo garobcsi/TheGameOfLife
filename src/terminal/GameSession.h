@@ -7,7 +7,7 @@
 #ifndef GAME_SESSION
 #define GAME_SESSION
 
-typedef enum { mainMenu,newGame,loadGame,mainGame,quitGame,abortGame } MenuOption;
+typedef enum { mainMenu,newGame,loadGame,mainGame,abortGame } MenuOption;
 
 #endif /* GAME_SESSION */
 
@@ -16,4 +16,11 @@ void HandleMainMenu(Game * game);
 void HandleNewGame(Game * game);
 void HandleLoadGame(Game * game);
 void HandleMainGame(Game * game);
-void HandleQuit(Game * game);
+
+void HandleGameNextStep(Game * game);
+void HandleGameModify(Game * game);
+void HandleGameRandomize(Game * game);
+void HandleGameClear(Game * game);
+void HandleGameSave(Game * game);
+void HandleGameBack(Game * game);
+void HandleGameQuit(Game * game);
