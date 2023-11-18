@@ -260,6 +260,10 @@ int PromptYesNo(bool * YesNo,char ask[]) {
     char str[5];
 
     printf("%s ",ask);
+    
+#ifdef _WIN32
+    fseek(stdin,0,SEEK_END);
+#endif
 
     char * stdinError = fgets(str, 5, stdin);
     if (stdinError == NULL) {
