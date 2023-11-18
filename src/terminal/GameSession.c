@@ -212,7 +212,7 @@ void HandleGameRandomize(Game * game) {
     while (true) {
         ClearScr();
         PrintHeader("Randomize\n");
-        int error = PromptYesNo(&yn,"This will rewrite game save data!\n\nDo you want to continue [y/n]");
+        int error = PromptYesNo(&yn,"This will rewrite game data!\n\nDo you want to continue [y/n]");
         if (error == 3) {
             LoadMenu(abortGame,game);
         }
