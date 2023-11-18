@@ -17,16 +17,17 @@ int main() {
 
     Game * game = InitializeGame();
     if (game == NULL) {
-        return 1; // error while creating (malloc) game
+        DestroyGame(game);
+        return 1;
     }
 
     int abortStatus = LoadMenu(mainMenu,game);
+    if (abortStatus == 1) {
+        DestroyGame(game);
+        return 1;
+    }
 
     DestroyGame(game);
-
-    if (abortStatus == 1) {
-        return 1; // after destroying game return with error
-    }
 
     return 0;
 }
