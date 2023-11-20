@@ -292,28 +292,49 @@ int PromptYesNo(bool * YesNo,char ask[]) {
     return 0;
 }
 
-
 /*
- * 0 ok
- * 1 back
- * 2 selection is too large
- * 3 format error
+ * 0 ok / back
+ * 1 enter
+ * 2 moved
+ * 3 loop
  */
-int PromptKillRevive(int * x,int * y,SizeMatrix size) {
-    printf("\nSelect cell to kill / revive [(9) to exit or (x,y)]: ");
-
-
-    bool error = scanf("%d,%d",x,y) != 2;
-    if (*x == 9 && error) {
+int PromptCursor(Point * cursor,SizeMatrix size) {
+    printf("\n[(Arrow Keys) to move, (Enter) to Kill / Revive, (9) to quit] ");
+    char c = ReadChar();
+    printf("\n%d",c);
+    printf("\n");
+    if (c == '9') {
+        return 0;
+    }
+    if (c == '\n') {
         return 1;
     }
-    if (error) {
-        PurgeStdin();
-        return 3;
-    }
-    if (!(size.x >= *x && *x >= 1) || !(size.y >= *y && *y >= 1)) {
-        return 2;
+    switch (c) {
+        case ARROW_LEFT:
+            if (size.x > cursor->x-1 && cursor->x-1 >= 0) {
+                cursor->x-=1;
+            }
+            return 2;
+            break;
+        case ARROW_RIGHT:
+            if (size.x > cursor->x+1 && cursor->x+1 >= 0) {
+                cursor->x+=1;
+            }
+            return 2;
+            break;
+        case ARROW_UP:
+            if (size.y > cursor->y-1 && cursor->y-1 >= 0) {
+                cursor->y-=1;
+            }
+            return 2;
+            break;
+        case ARROW_DOWN:
+            if (size.y > cursor->y+1 && cursor->y+1 >= 0) {
+                cursor->y+=1;
+            }
+            return 2;
+            break;
     }
 
-    return 0;
+    return 3;
 }

@@ -6,4 +6,4 @@ int PromptFileLoad(int * select,GameSaveFiles * files,Game * game);
 int PromptBack();
 int PromptGameMenu();
 int PromptYesNo(bool * YesNo,char ask[]);
-int PromptKillRevive(int * x,int * y,SizeMatrix size);
+int PromptCursor(Point * cursor,SizeMatrix size);

@@ -44,14 +44,24 @@ void PrintNumbersVertically(int length,int indent) {
 }
 
 void PrintMatrixBoard(Matrix * matrix) {
+    PrintMatrixBoardWithPoint(matrix, (Point){-1,-1});
+}
+
+void PrintMatrixBoardWithPoint(Matrix * matrix,Point point) {
     int sizeY = IntDigitSize((int)matrix->size.y);
 
     PrintBoxTop((int)matrix->size.x,sizeY);
     for (int i = 0; i < matrix->size.y; ++i) {
         for (int j = 0; j < matrix->size.x; ++j) {
             if(j==0) printf("%0*d|",sizeY,i+1);
+
             if (matrix->data[j][i]) AnsiBackgroundWhite();
-            printf("  ");
+            if (j == point.x && i == point.y) AnsiBackgroundGreen();
+            printf(" ");
+            AnsiResetAll();
+            if (matrix->data[j][i]) AnsiBackgroundWhite();
+            printf(" ");
+
             AnsiResetAll();
         }
         printf("|");
