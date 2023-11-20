@@ -280,13 +280,39 @@ int PromptYesNo(bool * YesNo,char ask[]) {
         return 0;
     }
     str[strlen(str)-1] = '\0'; // remove '\n' at the end
-    if (strcmp(str,"Yes") == 0 ||  strcmp(str,"y") == 0 || strcmp(str,"Y") == 0) {
+    if (strcmp(str,"Yes") == 0 || strcmp(str,"yes") == 0 ||  strcmp(str,"y") == 0 || strcmp(str,"Y") == 0) {
         *YesNo =true;
         return 0;
     }
-    if (strcmp(str,"No") == 0 || strcmp(str,"n") == 0 || strcmp(str,"N") == 0) {
+    if (strcmp(str,"No") == 0 || strcmp(str,"no") == 0 || strcmp(str,"n") == 0 || strcmp(str,"N") == 0) {
         *YesNo = false;
         return 0;
+    }
+
+    return 0;
+}
+
+
+/*
+ * 0 ok
+ * 1 back
+ * 2 selection is too large
+ * 3 format error
+ */
+int PromptKillRevive(int * x,int * y,SizeMatrix size) {
+    printf("\nSelect cell to kill / revive [(9) to exit or (x,y)]: ");
+
+
+    bool error = scanf("%d,%d",x,y) != 2;
+    if (*x == 9 && error) {
+        return 1;
+    }
+    if (error) {
+        PurgeStdin();
+        return 3;
+    }
+    if (!(size.x >= *x && *x >= 1) || !(size.y >= *y && *y >= 1)) {
+        return 2;
     }
 
     return 0;
