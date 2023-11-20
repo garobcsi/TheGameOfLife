@@ -208,32 +208,24 @@ void HandleGameNextStep(Game * game) {
 void HandleGameModify(Game * game) {
     game->fileProps.didUserSave = false;
 
-    int error = -1;
+    Point cursor = {0,0};
     do {
         ClearScr();
 
         PrintHeader("Kill / Revive");
         printf("\n");
 
-        PrintMatrixBoard(game->matrix);
+        PrintMatrixBoardWithPoint(game->matrix,cursor);
 
-        if (error == 2) {
-            printf("Selection is out of bounds!");
-        }
-        if (error == 3) {
-            printf("Format is invalid!");
-        }
-
-        int x=-1,y=-1;
-        error = PromptKillRevive(&x,&y,game->matrix->size);
-        if (error == 1) {
+        int action = PromptCursor(&cursor,game->matrix->size);
+        if (action == 0) {
             break;
         }
-
-        if (error == 0 && x != -1 && y != -1) {
-            game->matrix->data[x-1][y-1] = !game->matrix->data[x-1][y-1];
+        if (action == 1) {
+            game->matrix->data[cursor.x][cursor.y] = !game->matrix->data[cursor.x][cursor.y];
         }
-    }while (true);
+
+    } while (true);
 
     LoadMenu(mainGame,game);
 }

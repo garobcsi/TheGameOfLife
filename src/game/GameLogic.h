@@ -22,7 +22,7 @@ typedef struct Game {
 } Game;
 
 typedef struct Point {
-    size_t x,y;
+    int x,y;
 } Point;
 
 #endif /* GAME_LOGIC */

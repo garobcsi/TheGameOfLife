@@ -1,6 +1,22 @@
 #define MAX_X 255
 #define MAX_Y 255
 
+#ifdef _WIN32
+
+#define ARROW_LEFT 75
+#define ARROW_RIGHT 77
+#define ARROW_UP 72
+#define ARROW_DOWN 80
+
+#else
+
+#define ARROW_LEFT 68
+#define ARROW_RIGHT 67
+#define ARROW_UP 65
+#define ARROW_DOWN 66
+
+#endif
+
 #include "WindowSize.h"
 #include "../game/GameLogic.h"
 

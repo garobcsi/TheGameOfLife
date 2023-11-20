@@ -6,6 +6,7 @@ void InitPrintUTF8ForWindows();
 #endif
 
 void PrintMatrixBoard(Matrix * matrix);
+void PrintMatrixBoardWithPoint(Matrix * matrix,Point point);
 void ClearScr();
 
 void PrintHeader(char * str);
