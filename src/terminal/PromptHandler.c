@@ -301,14 +301,20 @@ int PromptYesNo(bool * YesNo,char ask[]) {
 int PromptCursor(Point * cursor,SizeMatrix size) {
     printf("\n[(Arrow Keys) to move, (Enter) to Kill / Revive, (9) to quit] ");
     char c = ReadChar();
-    printf("\n%d",c);
     printf("\n");
     if (c == '9') {
         return 0;
     }
+
+#ifdef _WIN32
+    if (c == 13) {
+        return 1;
+    }
+#else
     if (c == '\n') {
         return 1;
     }
+#endif
     switch (c) {
         case ARROW_LEFT:
             if (size.x > cursor->x-1 && cursor->x-1 >= 0) {
