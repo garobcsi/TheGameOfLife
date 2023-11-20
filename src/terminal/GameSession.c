@@ -202,6 +202,33 @@ void HandleGameNextStep(Game * game) {
 void HandleGameModify(Game * game) {
     game->fileProps.didUserSave = false;
 
+    int error = -1;
+    do {
+        ClearScr();
+
+        PrintHeader("Kill / Revive");
+        printf("\n");
+
+        PrintMatrixBoard(game->matrix);
+
+        if (error == 2) {
+            printf("Selection is out of bounds!");
+        }
+        if (error == 3) {
+            printf("Format is invalid!");
+        }
+
+        int x=-1,y=-1;
+        error = PromptKillRevive(&x,&y,game->matrix->size);
+        if (error == 1) {
+            break;
+        }
+
+        if (error == 0 && x != -1 && y != -1) {
+            game->matrix->data[x-1][y-1] = !game->matrix->data[x-1][y-1];
+        }
+    }while (true);
+
     LoadMenu(mainGame,game);
 }
 
@@ -211,7 +238,8 @@ void HandleGameRandomize(Game * game) {
     bool yn = false;
     while (true) {
         ClearScr();
-        PrintHeader("Randomize\n");
+        PrintHeader("Randomize");
+        printf("\n");
         int error = PromptYesNo(&yn,"This will rewrite game data!\n\nDo you want to continue [y/n]");
         if (error == 3) {
             LoadMenu(abortGame,game);
@@ -230,12 +258,13 @@ void HandleGameRandomize(Game * game) {
 }
 
 void HandleGameClear(Game * game) {
-    game->fileProps.didUserSave = true;
+    game->fileProps.didUserSave = false;
 
     bool yn = false;
     while (true) {
         ClearScr();
-        PrintHeader("Game Clear\n");
+        PrintHeader("Game Clear");
+        printf("\n");
         int error = PromptYesNo(&yn,"This will clear your game!\n\nDo you want to continue [y/n]");
         if (error == 3) {
             LoadMenu(abortGame,game);
@@ -261,7 +290,8 @@ void HandleGameSave(Game * game) {
         LoadMenu(abortGame,game);
     }
     ClearScr();
-    PrintHeader("Game Save\n");
+    PrintHeader("Game Save");
+    printf("\n");
     PrintGameWasSaved();
     SleepTime(1);
     LoadMenu(mainGame,game);
@@ -269,7 +299,8 @@ void HandleGameSave(Game * game) {
 
 void HandleDoYouWantToSave(Game * game) {
     ClearScr();
-    PrintHeader("Game Save\n");
+    PrintHeader("Game Save");
+    printf("\n");
     bool yn = false;
     int promptError = PromptYesNo(&yn,"Do you want to save your game [y/n]");
     if (promptError == 3) {
