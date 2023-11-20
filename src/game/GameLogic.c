@@ -84,3 +84,63 @@ void DeleteGameData (Game * game) {
     game->fileProps.didUserSave = true;
     game->fileProps.name[0] = '\0';
 }
+
+/*
+ * 0 ok
+ * 1 critical error
+ */
+/*
+ * -1,-1    +0,-1   +1,-1
+ * -1,+0    +0,+0   +1,+0
+ * -1,+1    +0,+1   +1,+1
+ */
+int FindNeighbors(Matrix * matrix,Point point) {
+    int count = 0;
+
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            if (i == 0 && j == 0) {
+                continue;
+            }
+
+            int x = (int)point.x + i;
+            int y = (int)point.y + j;
+
+            if (x >= 0 && x < matrix->size.x && y >= 0 && y < matrix->size.y) {
+                count += matrix->data[x][y];
+                if (count >= 4) {
+                    return count;
+                }
+            }
+        }
+    }
+    return count;
+}
+
+int NextStep(Matrix ** matrix) {
+    Matrix * this = (*matrix);
+    Matrix * next = InitializeMatrix(this->size);
+    if (next == NULL) {
+        return 1;
+    }
+    for (int i = 0; i < (int)this->size.y; ++i) {
+        for (int j = 0; j < (int) this->size.x; ++j) {
+            int n = FindNeighbors(this,(Point){j,i});
+
+            if (this->data[j][i] == true && n<=1) {
+                next->data[j][i] = false;
+            } else if (this->data[j][i] == true && (n == 2 || n == 3)) {
+                next->data[j][i] = true;
+            } else if (this->data[j][i] == true && n>=4) {
+                next->data[j][i] = false;
+            } else if (this->data[j][i] == false && n== 3) {
+                next->data[j][i] = true;
+            }
+
+        }
+    }
+
+    DestroyMatrix(*matrix);
+    *matrix = next;
+    return 0;
+}

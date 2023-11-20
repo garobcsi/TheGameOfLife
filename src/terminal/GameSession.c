@@ -196,6 +196,12 @@ void HandleMainGame(Game * game) {
 void HandleGameNextStep(Game * game) {
     game->fileProps.didUserSave = false;
 
+    int error = NextStep(&game->matrix);
+    if (error == 1) {
+        LoadMenu(abortGame,game);
+        return;
+    }
+
     LoadMenu(mainGame,game);
 }
 

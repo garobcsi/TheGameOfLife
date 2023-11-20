@@ -21,6 +21,10 @@ typedef struct Game {
     GameFileProperties fileProps;
 } Game;
 
+typedef struct Point {
+    size_t x,y;
+} Point;
+
 #endif /* GAME_LOGIC */
 
 Matrix * InitializeMatrix(SizeMatrix size);
@@ -28,3 +32,4 @@ void DestroyMatrix(Matrix * matrix);
 Game * InitializeGame();
 void DestroyGame(Game * game);
 void DeleteGameData (Game * game);
+int NextStep(Matrix ** matrix);
