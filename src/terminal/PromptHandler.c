@@ -125,7 +125,7 @@ SizeMatrix PromptMatrixSize(Game * game) {
             EraseInLine();
             gotErrorX=true;
 
-            printf("Width is too large !\n");
+            printf("Width is too %s !\n",x>0? "big":"small");
             x = -1;
         }
     }
@@ -162,7 +162,7 @@ SizeMatrix PromptMatrixSize(Game * game) {
             EraseInLine();
             gotErrorY=true;
 
-            printf("Height is too large !\n");
+            printf("Width is too %s !\n",y>0? "big":"small");
             y = -1;
         }
     }
