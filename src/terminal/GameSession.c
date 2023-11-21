@@ -165,7 +165,7 @@ void HandleMainGame(Game * game) {
     PrintMatrixBoard(game->matrix);
 
     PrintGameMenu();
-    // TODO: menu : quit, save, next, set (x,y)
+
     switch (PromptGameMenu()) {
         case 1: // Next Step
             HandleGameNextStep(game);
