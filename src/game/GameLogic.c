@@ -3,10 +3,6 @@
 #include "../util/Utils.h"
 #include "../../debugmalloc.h"
 
-/*
- * It's using malloc IT HAS TO BE FREED
- * Use "DestroyMatrix" Function
- * */
 Matrix * InitializeMatrix(SizeMatrix size) {
     Matrix *tmp = (Matrix*) malloc(sizeof(Matrix));
     if (tmp == NULL) {
