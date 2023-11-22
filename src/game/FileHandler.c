@@ -36,6 +36,10 @@ char * MakePath(char * str,bool catFileFormat) {
     return f;
 }
 
+/*
+ * 0 ok
+ * 1 error
+ */
 int InitSaveFolder() {
     #ifdef _WIN32
         if (!CreateDirectory(STRINGIFY_VALUE(SAVE_FOLDER), NULL)) {
