@@ -1,8 +1,8 @@
+#include "../../debugmalloc.h"
 #include "FileHandler.h"
 #include "CharLogicHandler.h"
 #include "../util/Stringify.h"
 #include "../util/Utils.h"
-#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <windows.h>

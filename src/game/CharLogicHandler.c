@@ -1,5 +1,5 @@
-#include "../util/Utils.h"
 #include "../../debugmalloc.h"
+#include "../util/Utils.h"
 
 char * CpyStr(char * str) {
     char * tmp = (char *) malloc(sizeof(char)*strlen(str)+1);

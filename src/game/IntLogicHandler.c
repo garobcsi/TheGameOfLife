@@ -1,5 +1,5 @@
-#include <math.h>
 #include "../../debugmalloc.h"
+#include <math.h>
 
 int IntDigitSize(int num) {
     int absolute = abs(num);

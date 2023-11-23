@@ -1,5 +1,5 @@
-#include <time.h>
 #include "../../debugmalloc.h"
+#include <time.h>
 
 void InitRandom() {
     unsigned int seed = 0;

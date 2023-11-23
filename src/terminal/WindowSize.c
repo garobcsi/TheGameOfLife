@@ -1,6 +1,6 @@
+#include "../../debugmalloc.h"
 #include "../terminal/GameSession.h"
 #include "../game/IntLogicHandler.h"
-#include "../../debugmalloc.h"
 
 #ifdef _WIN32
     #include <windows.h>

@@ -1,6 +1,6 @@
+#include "../../debugmalloc.h"
 #include "GameLogic.h"
 #include "../util/Utils.h"
-#include "../../debugmalloc.h"
 
 Matrix * InitializeMatrix(SizeMatrix size) {
     Matrix *tmp = (Matrix*) malloc(sizeof(Matrix));

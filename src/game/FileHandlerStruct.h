@@ -5,6 +5,8 @@
 #define FILE_FORMAT csv // .csv files
 #define FILE_NAME_LENGTH 128
 
+#include <stdbool.h>
+
 typedef struct GameFileProperties {
     char name[FILE_NAME_LENGTH];
     bool didUserSave;

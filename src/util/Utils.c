@@ -1,5 +1,5 @@
-#include "../terminal/StyleHandler.h"
 #include "../../debugmalloc.h"
+#include "../terminal/StyleHandler.h"
 
 #ifdef _WIN32
 #include <Windows.h>

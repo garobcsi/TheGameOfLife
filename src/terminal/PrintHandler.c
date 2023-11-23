@@ -1,9 +1,9 @@
+#include "../../debugmalloc.h"
 #include "PrintHandler.h"
 #include "StyleHandler.h"
 #include "../game/CharLogicHandler.h"
 #include "../game/IntLogicHandler.h"
 #include "../util/Utils.h"
-#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <windows.h>

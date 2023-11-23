@@ -1,8 +1,8 @@
+#include "../../debugmalloc.h"
 #include "StyleHandler.h"
 #include "GameSession.h"
 #include "../util/Utils.h"
 #include "../game/FileHandler.h"
-#include "../../debugmalloc.h"
 
 #ifdef _WIN32
 #include <conio.h>

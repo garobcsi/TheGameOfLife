@@ -1,9 +1,9 @@
+#include "../../debugmalloc.h"
 #include "GameSession.h"
 #include "PrintHandler.h"
 #include "PromptHandler.h"
 #include "../util/Utils.h"
 #include "../game/FileHandler.h"
-#include "../../debugmalloc.h"
 
 int LoadMenu(MenuOption menuOption,Game * game){
     switch (menuOption) {
