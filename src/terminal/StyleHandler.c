@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../../debugmalloc.h"
 
 //Cursor
 void MoveCursorUp(int steps) {

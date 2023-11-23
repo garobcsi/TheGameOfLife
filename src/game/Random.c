@@ -1,5 +1,6 @@
 #include <time.h>
 #include <stdlib.h>
+#include "../../debugmalloc.h"
 
 #ifdef __linux__ 
 #include <unistd.h>
