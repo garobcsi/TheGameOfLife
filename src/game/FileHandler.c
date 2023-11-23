@@ -158,7 +158,7 @@ int LoadGameFromFile(Game * game,GameSaveFiles * files,int select) {
 
     //skip first line
     int tmpX =0, tmpY =0;
-    if (fscanf(file,"%d;%d", &tmpX, &tmpX) != 2) {
+    if (fscanf(file,"%d;%d", &tmpX, &tmpY) != 2) {
         AbortMsg("Error while reading a file!");
         fclose(file);
         free(path);
