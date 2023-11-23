@@ -9,3 +9,5 @@ if(LINUX)
     target_link_libraries(${PROJECT_NAME} m)
 endif ()
 add_subdirectory(src)
+
+target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror)
