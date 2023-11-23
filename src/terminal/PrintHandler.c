@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "PrintHandler.h"
 #include "StyleHandler.h"
 #include "../game/CharLogicHandler.h"
 #include "../game/IntLogicHandler.h"
-#include "../game/FileHandler.h"
 #include "../../debugmalloc.h"
 
 #ifdef _WIN32
