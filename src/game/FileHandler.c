@@ -1,5 +1,3 @@
-#include <string.h>
-#include <stdio.h>
 #include "FileHandler.h"
 #include "CharLogicHandler.h"
 #include "../util/Stringify.h"

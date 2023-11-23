@@ -1,7 +1,6 @@
 #ifndef PRINT_HANDLER_H
 #define PRINT_HANDLER_H
 
-#include "WindowSize.h"
 #include "../game/GameLogic.h"
 
 #ifdef _WIN32

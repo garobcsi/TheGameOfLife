@@ -1,10 +1,6 @@
 #include <time.h>
 #include "../../debugmalloc.h"
 
-#ifdef __linux__ 
-#include <unistd.h>
-#endif
-
 void InitRandom() {
     unsigned int seed = 0;
 

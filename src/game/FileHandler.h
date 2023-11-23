@@ -1,7 +1,6 @@
 #ifndef FILE_HANDLER_H
 #define FILE_HANDLER_H
 
-#include <stdbool.h>
 #include "GameLogic.h"
 
 int InitSaveFolder();

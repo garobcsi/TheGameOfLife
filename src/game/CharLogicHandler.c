@@ -1,4 +1,3 @@
-#include <string.h>
 #include "../util/Utils.h"
 #include "../../debugmalloc.h"
 

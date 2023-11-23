@@ -1,5 +1,3 @@
-#include <stdbool.h>
-#include "WindowSize.h"
 #include "../terminal/GameSession.h"
 #include "../game/IntLogicHandler.h"
 #include "../../debugmalloc.h"

@@ -1,11 +1,8 @@
 #ifndef GAME_LOGIC_H
 #define GAME_LOGIC_H
 
-#include <stddef.h>
-#include <stdbool.h>
 #include "../terminal/WindowSize.h"
 #include "FileHandlerStruct.h"
-
 
 typedef struct SizeMatrix {
     size_t x,y;

@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <string.h>
 #include "StyleHandler.h"
-#include "PrintHandler.h"
 #include "GameSession.h"
 #include "../util/Utils.h"
 #include "../game/FileHandler.h"

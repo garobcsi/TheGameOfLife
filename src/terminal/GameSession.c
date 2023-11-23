@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "GameSession.h"
 #include "PrintHandler.h"
 #include "PromptHandler.h"

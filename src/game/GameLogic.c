@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include "GameLogic.h"
 #include "../util/Utils.h"
 #include "../../debugmalloc.h"

@@ -1,8 +1,6 @@
 #ifndef FILE_HANDLER_STRUCT_H
 #define FILE_HANDLER_STRUCT_H
 
-#include <stdbool.h>
-
 #define SAVE_FOLDER saves // folder name
 #define FILE_FORMAT csv // .csv files
 #define FILE_NAME_LENGTH 128

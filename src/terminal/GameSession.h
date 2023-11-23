@@ -20,12 +20,9 @@
 
 #endif
 
-#include "WindowSize.h"
 #include "../game/GameLogic.h"
 
-
 typedef enum { mainMenu,newGame,loadGame,mainGame,abortGame } MenuOption;
-
 
 int  LoadMenu(MenuOption menuOption,Game * game);
 void HandleMainMenu(Game * game);
