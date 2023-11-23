@@ -1,3 +1,6 @@
+#ifndef GAME_SESSION_H
+#define GAME_SESSION_H
+
 #define MAX_X 255
 #define MAX_Y 255
 
@@ -20,12 +23,9 @@
 #include "WindowSize.h"
 #include "../game/GameLogic.h"
 
-#ifndef GAME_SESSION
-#define GAME_SESSION
 
 typedef enum { mainMenu,newGame,loadGame,mainGame,abortGame } MenuOption;
 
-#endif /* GAME_SESSION */
 
 int  LoadMenu(MenuOption menuOption,Game * game);
 void HandleMainMenu(Game * game);
@@ -40,3 +40,5 @@ void HandleGameClear(Game * game);
 void HandleGameSave(Game * game);
 void HandleGameBack(Game * game);
 void HandleGameQuit(Game * game);
+
+#endif

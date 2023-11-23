@@ -1,3 +1,6 @@
+#ifndef PRINT_HANDLER_H
+#define PRINT_HANDLER_H
+
 #include "../game/GameLogic.h"
 #include "WindowSize.h"
 
@@ -16,3 +19,5 @@ void PrintFiles(GameSaveFiles * files);
 void PrintBack();
 void PrintGameMenu();
 void PrintGameWasSaved();
+
+#endif

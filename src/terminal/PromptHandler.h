@@ -1,3 +1,6 @@
+#ifndef PROMPT_HANDLER_H
+#define PROMPT_HANDLER_H
+
 char ReadChar();
 int PromptMainMenu();
 int PromptFileName(char * str);
@@ -7,3 +10,5 @@ int PromptBack();
 int PromptGameMenu();
 int PromptYesNo(bool * YesNo,char ask[]);
 int PromptCursor(Point * cursor,SizeMatrix size);
+
+#endif

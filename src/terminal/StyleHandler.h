@@ -1,3 +1,6 @@
+#ifndef STYLE_HANDLER_H
+#define STYLE_HANDLER_H
+
 //Cursor
 void MoveCursorUp(int steps);
 
@@ -31,3 +34,5 @@ void AnsiBackgroundWhite();
 void StyleBold();
 void StyleItalic();
 void StyleUnderline();
+
+#endif
