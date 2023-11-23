@@ -50,12 +50,8 @@ void HandleMainMenu(Game * game) {
 }
 void HandleNewGame(Game * game) {
     int saveError = 0;
-    char * str = (char *) malloc(sizeof(char)*FILE_NAME_LENGTH+10);
-    if (str == NULL) {
-        free(str);
-        LoadMenu(abortGame,game);
-        return;
-    }
+    char str[FILE_NAME_LENGTH+1];
+    str[0] = '\0';
     do {
         ClearScr();
         PrintHeader("New Game");
@@ -67,13 +63,11 @@ void HandleNewGame(Game * game) {
         }
         saveError = PromptFileName(str);
         if (saveError == 4) {
-            free(str);
             LoadMenu(abortGame,game);
             return;
         }
     } while (saveError != 0);
     strcpy(game->fileProps.name,str);
-    free(str);
 
     SizeMatrix size = PromptMatrixSize(game);
     game->matrix = InitializeMatrix(size);
