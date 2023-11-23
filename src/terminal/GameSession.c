@@ -3,7 +3,6 @@
 #include "GameSession.h"
 #include "PrintHandler.h"
 #include "PromptHandler.h"
-#include "PrintHandler.h"
 #include "../util/Utils.h"
 #include "../game/FileHandler.h"
 #include "../../debugmalloc.h"

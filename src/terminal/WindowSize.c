@@ -1,5 +1,4 @@
 #include <stdbool.h>
-#include <stdio.h>
 #include "WindowSize.h"
 #include "../terminal/GameSession.h"
 #include "../game/IntLogicHandler.h"

@@ -6,8 +6,6 @@
 #include "PrintHandler.h"
 #include "GameSession.h"
 #include "../util/Utils.h"
-#include "../game/IntLogicHandler.h"
-#include "../game/GameLogic.h"
 #include "../game/FileHandler.h"
 #include "../../debugmalloc.h"
 
