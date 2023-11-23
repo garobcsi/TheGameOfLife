@@ -224,7 +224,6 @@ int GetSaveFiles(GameSaveFiles ** files) {
     if (dir == NULL) {
         free((*files));
         *files = NULL;
-        closedir(dir);
         AbortMsg("Error while opening directory!");
         return 1;
     }
