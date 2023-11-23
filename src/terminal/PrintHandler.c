@@ -2,6 +2,7 @@
 #include "StyleHandler.h"
 #include "../game/CharLogicHandler.h"
 #include "../game/IntLogicHandler.h"
+#include "../util/Utils.h"
 #include "../../debugmalloc.h"
 
 #ifdef _WIN32
@@ -70,10 +71,13 @@ void PrintMatrixBoardWithPoint(Matrix * matrix,Point point) {
 
 void ClearScr() {
 #ifdef _WIN32
-    system("cls");
+    int sysError = system("cls");
 #else
-    system("clear");
+    int sysError = system("clear");
 #endif
+    if(sysError == -1) {
+        AbortMsg("Failed to clear screen!");
+    }
 }
 
 void PrintHeader(char * str) {
