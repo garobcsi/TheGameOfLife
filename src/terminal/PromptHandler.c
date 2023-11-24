@@ -248,6 +248,7 @@ int PromptGameMenu() {
  * 0 ok
  * 1 formatting error
  * 2 critical error
+ * 3 loop
  */
 int PromptYesNo(bool * YesNo,char ask[]) {
     char str[5];
@@ -282,7 +283,7 @@ int PromptYesNo(bool * YesNo,char ask[]) {
         return 0;
     }
 
-    return 0;
+    return 3;
 }
 
 /*

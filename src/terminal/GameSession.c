@@ -319,7 +319,7 @@ Menu GameRandomize(Menu menu,Game * game) {
                     PrintHeader("Randomize");
                     printf("\n");
                     int error = PromptYesNo(&yn,"This will rewrite game data!\n\nDo you want to continue [y/n]");
-                    if (error == 3) {
+                    if (error == 2) {
                         return MENU_ABORT;
                     }
                     if (error == 0) {
@@ -362,7 +362,7 @@ Menu GameClear(Menu menu,Game * game) {
                     PrintHeader("Game Clear");
                     printf("\n");
                     int error = PromptYesNo(&yn,"This will clear your game!\n\nDo you want to continue [y/n]");
-                    if (error == 3) {
+                    if (error == 2) {
                         return MENU_ABORT;
                     }
                     if (error == 0) {
@@ -434,7 +434,7 @@ Menu DoYouWantToSave(Menu menu,Game * game) {
                 printf("\n");
                 bool yn = false;
                 int promptError = PromptYesNo(&yn,"Do you want to save your game [y/n]");
-                if (promptError == 3) {
+                if (promptError == 2) {
                     return MENU_ABORT;
                 }
                 if (promptError != 0) {
