@@ -22,20 +22,25 @@
 
 #include "../game/GameLogic.h"
 
-typedef enum { mainMenu,newGame,loadGame,mainGame,abortGame } MenuOption;
+typedef enum Menu {
+    MENU_INIT, // Start Menu
+    MENU_BACK, // Go back to previous menu
+    MENU_EXIT, // Exit game with return 0
+    MENU_ABORT // Abort game with return 1
+} Menu;
 
-int  LoadMenu(MenuOption menuOption,Game * game);
-void HandleMainMenu(Game * game);
-void HandleNewGame(Game * game);
-void HandleLoadGame(Game * game);
-void HandleMainGame(Game * game);
+Menu MainMenu(Menu menu,Game * game);
+Menu NewGame(Menu menu,Game * game);
+Menu LoadGame(Menu menu,Game * game);
+Menu MainGame(Menu menu,Game * game);
 
-void HandleGameNextStep(Game * game);
-void HandleGameModify(Game * game);
-void HandleGameRandomize(Game * game);
-void HandleGameClear(Game * game);
-void HandleGameSave(Game * game);
-void HandleGameBack(Game * game);
-void HandleGameQuit(Game * game);
+Menu GameNextStep(Menu menu,Game * game);
+Menu GameModify(Menu menu,Game * game);
+Menu GameRandomize(Menu menu,Game * game);
+Menu GameClear(Menu menu,Game * game);
+Menu GameSave(Menu menu,Game * game);
+Menu DoYouWantToSave(Menu menu,Game * game);
+Menu GameBack(Menu menu,Game * game);
+Menu GameQuit(Menu menu,Game * game);
 
 #endif

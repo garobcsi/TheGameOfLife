@@ -20,12 +20,12 @@ int main() {
         return 1;
     }
 
-    int abortStatus = LoadMenu(mainMenu,game);
-    if (abortStatus == 1) {
+    Menu status = MainMenu(MENU_INIT,game);
+    if (status == MENU_ABORT) {
         DestroyGame(game);
         return 1;
     }
-
+    
     DestroyGame(game);
 
     return 0;
