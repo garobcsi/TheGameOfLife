@@ -2,7 +2,7 @@
 #include "../util/Utils.h"
 
 char * CpyStr(char * str) {
-    char * tmp = (char *) malloc(sizeof(char)*strlen(str)+1);
+    char * tmp = (char *) malloc(sizeof(char)*(strlen(str)+1));
     if (tmp == NULL) {
         free(tmp);
         AbortMsg("Memory allocation failed!");
