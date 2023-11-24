@@ -91,7 +91,6 @@ int SaveMatrixToFile(Matrix * matrix,char * str) {
     char * path = MakePath(str,true);
     file = fopen(path, "w");
     if (file == NULL) {
-        //fclose(file);
         AbortMsg("Failed to create file!");
         return 1;
     }
@@ -117,7 +116,6 @@ int GetSizeFromFile (SizeMatrix * size, GameSaveFiles * files,int select) {
 
     FILE *file = fopen(path, "r");
     if (file == NULL) {
-        //fclose(file);
         AbortMsg("Error opening file");
         return 1;
     }
@@ -149,7 +147,6 @@ int LoadGameFromFile(Game * game,GameSaveFiles * files,int select) {
 
     FILE *file = fopen(path, "r");
     if (file == NULL) {
-        //fclose(file);
         AbortMsg("Error opening file");
         return 1;
     }
