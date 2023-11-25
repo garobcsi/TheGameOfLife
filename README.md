@@ -12,3 +12,5 @@
 Specification: [docx](./documentation/specification.docx) [pdf](./documentation/out-pdf/specification.pdf)
 
 User Documentation: [docx](./documentation/user_documentation.docx) [pdf](./documentation/out-pdf/user_documentation.pdf)
+
+Programmers Documentation: [docx](./documentation/programmers_documentation.docx) [pdf](./documentation/out-pdf/programmers_documentation.pdf)
