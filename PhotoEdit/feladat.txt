@@ -1,0 +1,3 @@
+Gáspár Róbert: The Game Of Life
+
+A program Conway's Game of Life nevű játékot valósítja meg. A játék egy egyszerű, mégis izgalmas játékélményt nyújt, ahol a sejtek dinamikus változásain keresztül a játékosok felfedezhetik a komplex rendszerek és az élet evolúciójának szépségét.
